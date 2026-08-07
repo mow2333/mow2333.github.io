@@ -26,18 +26,18 @@
     cursor: crosshair;
   }
 
-  /* 谱面轨道网格背景 */
+  /* 谱面轨道网格背景（可拖拽） */
   .grid {
-    position: fixed; inset: -120px;
+    position: fixed; inset: -200px;  /* 超出视口保证拖拽时无白边 */
     background-image:
       linear-gradient(rgba(232,230,227,.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px);
     background-size: 44px 44px;
     transform: rotate(12deg);
-    animation: grid-drift 24s linear infinite;
     z-index: 0;
+    will-change: transform;
+    touch-action: none;
   }
-  @keyframes grid-drift { from { background-position: 0 0; } to { background-position: 44px 88px; } }
 
   /* 噪点 */
   body::after {
@@ -218,6 +218,119 @@
     const y = (e.clientY / window.innerHeight - .5) * 10;
     wrap.style.translate = x + "px " + y + "px";
   }, { passive: true });
+
+  // 网格拖拽 + 惯性 + 空闲自动漂移
+  (() => {
+    const grid = document.querySelector(".grid");
+    let posX = 0, posY = 0;          // 当前偏移
+    let velX = 0, velY = 0;          // 速度
+    let dragging = false;
+    let lastX = 0, lastY = 0;
+    let lastTime = 0;
+    let animId = null;
+    let idleTimer = null;
+
+    // 网格循环周期（44px * sqrt(2) 约 62px，但用 44px 即可无缝）
+    const GRID_SIZE = 44;
+
+    function applyTransform() {
+      // 无限循环：取模保证数值不溢出
+      const modX = ((posX % GRID_SIZE) + GRID_SIZE) % GRID_SIZE;
+      const modY = ((posY % GRID_SIZE) + GRID_SIZE) % GRID_SIZE;
+      grid.style.transform = `rotate(12deg) translate(${modX}px, ${modY}px)`;
+    }
+
+    function animate() {
+      // 惯性衰减
+      velX *= 0.95;
+      velY *= 0.95;
+      posX += velX;
+      posY += velY;
+      applyTransform();
+
+      if (Math.abs(velX) > 0.05 || Math.abs(velY) > 0.05) {
+        animId = requestAnimationFrame(animate);
+      } else {
+        animId = null;
+        startIdleDrift();
+      }
+    }
+
+    function startIdleDrift() {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        // 空闲 3 秒后启动缓慢自动漂移
+        velX = (Math.random() - 0.5) * 0.3;
+        velY = (Math.random() - 0.5) * 0.3;
+        if (!animId) animate();
+      }, 3000);
+    }
+
+    function stopIdleDrift() {
+      clearTimeout(idleTimer);
+    }
+
+    function onDown(clientX, clientY) {
+      dragging = true;
+      stopIdleDrift();
+      cancelAnimationFrame(animId);
+      animId = null;
+      lastX = clientX;
+      lastY = clientY;
+      lastTime = performance.now();
+      velX = 0;
+      velY = 0;
+      grid.style.cursor = "grabbing";
+    }
+
+    function onMove(clientX, clientY) {
+      if (!dragging) return;
+      const now = performance.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        // 计算即时速度用于惯性
+        velX = (clientX - lastX) / dt * 16;  // 归一化到 60fps
+        velY = (clientY - lastY) / dt * 16;
+      }
+      posX += clientX - lastX;
+      posY += clientY - lastY;
+      lastX = clientX;
+      lastY = clientY;
+      lastTime = now;
+      applyTransform();
+    }
+
+    function onUp() {
+      if (!dragging) return;
+      dragging = false;
+      grid.style.cursor = "grab";
+      // 启动惯性动画
+      if (!animId) animate();
+    }
+
+    // 鼠标事件
+    grid.addEventListener("mousedown", e => onDown(e.clientX, e.clientY));
+    window.addEventListener("mousemove", e => onMove(e.clientX, e.clientY));
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("mouseleave", onUp);
+
+    // 触摸事件
+    grid.addEventListener("touchstart", e => {
+      const t = e.touches[0];
+      onDown(t.clientX, t.clientY);
+    }, { passive: true });
+    window.addEventListener("touchmove", e => {
+      const t = e.touches[0];
+      onMove(t.clientX, t.clientY);
+    }, { passive: true });
+    window.addEventListener("touchend", onUp);
+    window.addEventListener("touchcancel", onUp);
+
+    // 初始状态
+    grid.style.cursor = "grab";
+    applyTransform();
+    startIdleDrift();
+  })();
 </script>
 </body>
 </html>
