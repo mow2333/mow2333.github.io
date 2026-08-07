@@ -30,13 +30,9 @@
   .grid {
     position: fixed; inset: -200px;
     background-image:
-      /* 网格线 */
       linear-gradient(rgba(232,230,227,.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px),
-      /* 网格交点星星 */
-      radial-gradient(circle at 0 0, rgba(232,230,227,.35) 1.5px, transparent 1.5px);
+      linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px);
     background-size: 44px 44px;
-    background-position: 0 0, 0 0, 22px 22px;
     transform: rotate(12deg);
     z-index: 0;
     will-change: transform;
@@ -69,18 +65,26 @@
   }
   @keyframes aura-pulse { 0%,100% { opacity: .6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
 
-  /* 鼠标跟随光晕 */
-  .cursor-glow {
-    position: fixed; width: 300px; height: 300px; border-radius: 50%;
-    pointer-events: none; z-index: 4;
-    background: radial-gradient(circle at center,
-      rgba(232,230,227,.12) 0%,
-      rgba(179,161,95,.06) 40%,
-      transparent 70%);
-    transform: translate(-50%, -50%);
-    transition: opacity .2s ease, transform .05s linear;
-    opacity: 0;
+  /* 随机星空层（JS 生成，真实天空感） */
+  .sky {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    will-change: transform;
   }
+  .star-layer {
+    position: absolute; top: 0; left: 0;
+    width: 0; height: 0;
+    border-radius: 50%;
+  }
+  .twinkle {
+    position: absolute;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: rgba(232,230,227,.85);
+    animation: twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle { 0%,100% { opacity: .1; } 50% { opacity: .95; } }
 
   main {
     position: relative; z-index: 1;
@@ -195,7 +199,7 @@
 
 <div class="grid" aria-hidden="true"></div>
   <div class="aura" aria-hidden="true"></div>
-  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="sky" id="sky" aria-hidden="true"></div>
 
   <main>
   <div class="core-wrap" id="coreWrap">
@@ -235,6 +239,43 @@
     }
   })();
 
+  // 随机星空（三层景深 + 闪烁星），轻微反向视差
+  (() => {
+    const sky = document.getElementById("sky");
+    const LAYERS = [
+      { count: 90, size: 1, alpha: .35 },
+      { count: 42, size: 2, alpha: .5 },
+      { count: 12, size: 3, alpha: .7 }
+    ];
+    const frag = document.createDocumentFragment();
+    LAYERS.forEach((layer) => {
+      const div = document.createElement("div");
+      div.className = "star-layer";
+      const shadows = [];
+      for (let i = 0; i < layer.count; i++) {
+        const x = (Math.random() * 100).toFixed(2);
+        const y = (Math.random() * 100).toFixed(2);
+        shadows.push(`${x}vw ${y}vh 0 ${layer.size - 1}px rgba(232,230,227,${layer.alpha})`);
+      }
+      div.style.boxShadow = shadows.join(",");
+      frag.appendChild(div);
+    });
+    for (let i = 0; i < 16; i++) {
+      const s = document.createElement("div");
+      s.className = "twinkle";
+      s.style.left = (Math.random() * 100).toFixed(2) + "vw";
+      s.style.top = (Math.random() * 100).toFixed(2) + "vh";
+      s.style.animationDelay = (Math.random() * 6).toFixed(1) + "s";
+      s.style.animationDuration = (3 + Math.random() * 5).toFixed(1) + "s";
+      frag.appendChild(s);
+    }
+    sky.appendChild(frag);
+    window.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - .5) * 16;
+      const y = (e.clientY / window.innerHeight - .5) * 16;
+      sky.style.translate = `${-x}px ${-y}px`;
+    }, { passive: true });
+  })();
   // 点击波纹（用 mousedown 坐标，避免 click 错位）
   let rippleX = 0, rippleY = 0;
   document.addEventListener("mousedown", (e) => {
@@ -309,9 +350,6 @@ function startIdleDrift() {
       clearTimeout(idleTimer);
     }
 
-    const cursorGlow = document.getElementById("cursorGlow");
-    let mouseX = 0, mouseY = 0;
-
     function onDown(clientX, clientY, e) {
       // 忽略交互元素（链接、按钮、输入框）
       const target = e.target.closest('a, button, input, select, textarea, [role="button"]');
@@ -332,13 +370,6 @@ function startIdleDrift() {
     }
 
     function onMove(clientX, clientY) {
-      if (!dragging) {
-        // 鼠标跟随光晕
-        mouseX = clientX;
-        mouseY = clientY;
-        cursorGlow.style.transform = `translate(${clientX - 150}px, ${clientY - 150}px)`;
-        cursorGlow.style.opacity = "1";
-      }
       if (!dragging) return;
       const now = performance.now();
       const dt = now - lastTime;
@@ -359,7 +390,6 @@ function startIdleDrift() {
       dragging = false;
       grid.style.cursor = "grab";
       document.documentElement.style.userSelect = "";
-      cursorGlow.style.opacity = "0";
       if (!animId) animate();
     }
 
