@@ -274,7 +274,11 @@
     }
 
 function onDown(clientX, clientY, e) {
-      if (e) e.preventDefault();
+      // 忽略交互元素（链接、按钮、输入框）
+      const target = e.target.closest('a, button, input, select, textarea, [role="button"]');
+      if (target) return;
+
+      e.preventDefault();
       dragging = true;
       stopIdleDrift();
       cancelAnimationFrame(animId);
@@ -285,7 +289,7 @@ function onDown(clientX, clientY, e) {
       velX = 0;
       velY = 0;
       grid.style.cursor = "grabbing";
-      document.body.style.userSelect = "none";
+      document.documentElement.style.userSelect = "none";
     }
 
     function onMove(clientX, clientY) {
@@ -308,18 +312,19 @@ function onDown(clientX, clientY, e) {
       if (!dragging) return;
       dragging = false;
       grid.style.cursor = "grab";
-      document.body.style.userSelect = "";
+      document.documentElement.style.userSelect = "";
       if (!animId) animate();
     }
 
-    // 鼠标事件
-    grid.addEventListener("mousedown", e => onDown(e.clientX, e.clientY, e));
+    // 挂在 document 上，任何位置按下都能拖拽（除非点在链接/按钮上）
+    document.addEventListener("mousedown", e => onDown(e.clientX, e.clientY, e));
     window.addEventListener("mousemove", e => onMove(e.clientX, e.clientY));
     window.addEventListener("mouseup", onUp);
     window.addEventListener("mouseleave", onUp);
 
-    // 触摸事件
-    grid.addEventListener("touchstart", e => {
+    document.addEventListener("touchstart", e => {
+      const target = e.target.closest('a, button, input, select, textarea, [role="button"]');
+      if (target) return;
       e.preventDefault();
       const t = e.touches[0];
       onDown(t.clientX, t.clientY);
