@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mow2333</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23e8e6e3' stroke-width='3' stroke-dasharray='8 6'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' fill='%23e8e6e3' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070b;
+    --ink: #e8e6e3;
+    --dim: #55535c;
+    --dim2: #3a3942;
+    --accent: #e8e6e3;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    cursor: crosshair;
+  }
+
+  /* 谱面轨道网格背景 */
+  .grid {
+    position: fixed; inset: -120px;
+    background-image:
+      linear-gradient(rgba(232,230,227,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    transform: rotate(12deg);
+    animation: grid-drift 24s linear infinite;
+    z-index: 0;
+  }
+  @keyframes grid-drift { from { background-position: 0 0; } to { background-position: 44px 88px; } }
+
+  /* 噪点 */
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(232,230,227,.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: .25;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  main {
+    position: relative; z-index: 1;
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 56px;
+    padding: 24px;
+  }
+
+  /* 轨道核心：双层旋转环 + 名字 */
+  .core-wrap { position: relative; width: 280px; height: 280px; }
+  .ring {
+    position: absolute; border-radius: 50%;
+    top: 50%; left: 50%;
+  }
+  .r1 {
+    width: 280px; height: 280px;
+    margin: -140px 0 0 -140px;
+    border: 1px dashed rgba(232,230,227,.28);
+    animation: spin 32s linear infinite;
+  }
+  .r2 {
+    width: 216px; height: 216px;
+    margin: -108px 0 0 -108px;
+    border: 1px solid rgba(232,230,227,.12);
+    border-top-color: rgba(232,230,227,.6);
+    animation: spin-rev 18s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes spin-rev { to { transform: rotate(-360deg); } }
+  .core {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2px;
+  }
+  .core h1 { font-size: 34px; font-weight: 500; letter-spacing: 6px; margin-right: -6px; }
+  .core p { font-size: 12px; color: var(--dim); letter-spacing: 3px; }
+
+  /* 节拍点链接列表 */
+  .links { display: flex; flex-direction: column; gap: 2px; width: 360px; max-width: 100%; }
+  .links a {
+    display: flex; align-items: baseline; gap: 16px;
+    padding: 9px 12px;
+    text-decoration: none; color: var(--dim);
+    font-size: 15px; letter-spacing: 1px;
+    border-radius: 2px;
+    transition: color .15s ease, background .15s ease;
+    position: relative;
+  }
+  .links a::after {
+    content: ""; position: absolute;
+    left: 12px; right: 12px; bottom: 4px;
+    height: 1px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .2s ease;
+  }
+  .links a:hover { color: var(--ink); background: rgba(232,230,227,.045); }
+  .links a:hover::after { transform: scaleX(1); }
+  .links .no { font-size: 11px; color: var(--dim2); min-width: 20px; }
+  .links .path { margin-left: auto; font-size: 11px; color: var(--dim2); }
+  .links a:hover .path { color: var(--dim); }
+
+  /* 座右铭打字机 */
+  .motto { font-size: 13px; color: var(--dim); letter-spacing: 2px; height: 18px; }
+  .motto .cursor { color: var(--ink); animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; justify-content: space-between;
+    padding: 10px 16px;
+    font-size: 11px; color: var(--dim2);
+    letter-spacing: 1px;
+    z-index: 4;
+  }
+
+  /* 点击波纹 */
+  .ripple {
+    position: fixed; border-radius: 50%;
+    border: 1px solid rgba(232,230,227,.35);
+    pointer-events: none;
+    animation: ripple .7s ease-out forwards;
+    z-index: 6;
+  }
+  @keyframes ripple { from { width: 0; height: 0; opacity: 1; } to { width: 120px; height: 120px; opacity: 0; } }
+
+  @media (max-width: 520px) {
+    .core-wrap { width: 200px; height: 200px; }
+    .r1 { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
+    .r2 { width: 152px; height: 152px; margin: -76px 0 0 -76px; }
+    .core h1 { font-size: 26px; }
+    main { gap: 40px; }
+    footer { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid" aria-hidden="true"></div>
+
+<main>
+  <div class="core-wrap" id="coreWrap">
+    <div class="ring r1" aria-hidden="true"></div>
+    <div class="ring r2" aria-hidden="true"></div>
+    <div class="core">
+      <h1>MOW</h1>
+      <p>mow2333</p>
+    </div>
+  </div>
+
+  <nav class="links" aria-label="链接">
+    <a href="https://mow2333.github.io/WorldBridge/"><span class="no">01</span>WorldBridge Wiki<span class="path">/WorldBridge/</span></a>
+    <a href="https://github.com/mow2333"><span class="no">02</span>GitHub<span class="path">github.com/mow2333</span></a>
+    <a href="https://discord.gg/zxG3zmsR9P"><span class="no">03</span>Discord<span class="path">discord.gg/…</span></a>
+    <a href="https://space.bilibili.com/1675029093"><span class="no">04</span>Bilibili<span class="path">bilibili.com/…</span></a>
+    <a href="https://tuforums.com/profile/9516"><span class="no">05</span>TUF<span class="path">tuforums.com/…</span></a>
+  </nav>
+
+  <p class="motto"><span id="mottoText"></span><span class="cursor">▌</span></p>
+</main>
+
+<footer>
+  <span>load 1 world / 5 links</span>
+  <span>© 2026 Mow · GitHub Pages</span>
+</footer>
+
+<script>
+  // 座右铭打字机
+  const motto = "vanitas vanitatum omnia vanitas";
+  const el = document.getElementById("mottoText");
+  let i = 0;
+  (function type() {
+    if (i <= motto.length) {
+      el.textContent = motto.slice(0, i++);
+      setTimeout(type, 85);
+    }
+  })();
+
+  // 点击波纹
+  document.addEventListener("click", (e) => {
+    const r = document.createElement("div");
+    r.className = "ripple";
+    r.style.left = e.clientX + "px";
+    r.style.top = e.clientY + "px";
+    document.body.appendChild(r);
+    setTimeout(() => r.remove(), 750);
+  });
+
+  // 核心环视差跟随
+  const wrap = document.getElementById("coreWrap");
+  window.addEventListener("mousemove", (e) => {
+    const x = (e.clientX / window.innerWidth - .5) * 10;
+    const y = (e.clientY / window.innerHeight - .5) * 10;
+    wrap.style.translate = x + "px " + y + "px";
+  }, { passive: true });
+</script>
+</body>
+</html>
