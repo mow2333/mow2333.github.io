@@ -273,7 +273,8 @@
       clearTimeout(idleTimer);
     }
 
-    function onDown(clientX, clientY) {
+function onDown(clientX, clientY, e) {
+      if (e) e.preventDefault();
       dragging = true;
       stopIdleDrift();
       cancelAnimationFrame(animId);
@@ -292,8 +293,7 @@
       const now = performance.now();
       const dt = now - lastTime;
       if (dt > 0) {
-        // 计算即时速度用于惯性
-        velX = (clientX - lastX) / dt * 16;  // 归一化到 60fps
+        velX = (clientX - lastX) / dt * 16;
         velY = (clientY - lastY) / dt * 16;
       }
       posX += clientX - lastX;
@@ -309,25 +309,25 @@
       dragging = false;
       grid.style.cursor = "grab";
       document.body.style.userSelect = "";
-      // 启动惯性动画
       if (!animId) animate();
     }
 
     // 鼠标事件
-    grid.addEventListener("mousedown", e => onDown(e.clientX, e.clientY));
+    grid.addEventListener("mousedown", e => onDown(e.clientX, e.clientY, e));
     window.addEventListener("mousemove", e => onMove(e.clientX, e.clientY));
     window.addEventListener("mouseup", onUp);
     window.addEventListener("mouseleave", onUp);
 
     // 触摸事件
     grid.addEventListener("touchstart", e => {
+      e.preventDefault();
       const t = e.touches[0];
       onDown(t.clientX, t.clientY);
-    }, { passive: true });
+    }, { passive: false });
     window.addEventListener("touchmove", e => {
       const t = e.touches[0];
       onMove(t.clientX, t.clientY);
-    }, { passive: true });
+    }, { passive: false });
     window.addEventListener("touchend", onUp);
     window.addEventListener("touchcancel", onUp);
 
