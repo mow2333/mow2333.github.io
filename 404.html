@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - mow2333</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23e8e6e3' stroke-width='3' stroke-dasharray='8 6'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' fill='%23e8e6e3' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070b;
+    --ink: #e8e6e3;
+    --dim: #55535c;
+    --dim2: #3a3942;
+    --warn: #b3a15f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    overflow: hidden;
+    cursor: crosshair;
+  }
+
+  .grid {
+    position: fixed; inset: -120px;
+    background-image:
+      linear-gradient(rgba(232,230,227,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    transform: rotate(12deg);
+    animation: grid-drift 24s linear infinite;
+    z-index: 0;
+  }
+  @keyframes grid-drift { from { background-position: 0 0; } to { background-position: 44px 88px; } }
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(232,230,227,.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: .25;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  main {
+    position: relative; z-index: 1;
+    height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 40px;
+    padding: 24px;
+  }
+
+  /* 断环：传送失败，轨道断裂 */
+  .broken-wrap { position: relative; width: 200px; height: 200px; }
+  .broken {
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from -90deg,
+      rgba(232,230,227,.35) 0deg 300deg,
+      transparent 300deg 330deg,
+      rgba(232,230,227,.35) 330deg 360deg);
+    -webkit-mask: radial-gradient(closest-side, transparent 78%, #000 79%, #000 92%, transparent 93%);
+    mask: radial-gradient(closest-side, transparent 78%, #000 79%, #000 92%, transparent 93%);
+    animation: warn-pulse 3s ease-in-out infinite;
+  }
+  .broken::after {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 1px dashed rgba(232,230,227,.16);
+    animation: spin 40s linear infinite;
+  }
+  @keyframes warn-pulse {
+    0%, 100% { opacity: .85; }
+    50% { opacity: 1; filter: drop-shadow(0 0 14px rgba(179,161,95,.35)); }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .broken-core {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .broken-core .x {
+    font-size: 44px; font-weight: 500;
+    color: var(--warn);
+    letter-spacing: 2px;
+  }
+
+  .code { font-size: 64px; font-weight: 500; letter-spacing: 10px; margin-right: -10px; }
+  .msg { font-size: 13px; color: var(--dim); letter-spacing: 1px; height: 18px; }
+  .msg .cursor { color: var(--ink); animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .links { display: flex; gap: 32px; }
+  .links a {
+    display: flex; align-items: baseline; gap: 10px;
+    text-decoration: none; color: var(--dim);
+    font-size: 14px; letter-spacing: 1px;
+    padding: 8px 10px; border-radius: 2px;
+    transition: color .15s ease, background .15s ease;
+    position: relative;
+  }
+  .links a::after {
+    content: ""; position: absolute;
+    left: 10px; right: 10px; bottom: 4px;
+    height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .2s ease;
+  }
+  .links a:hover { color: var(--ink); background: rgba(232,230,227,.045); }
+  .links a:hover::after { transform: scaleX(1); }
+  .links a:hover { color: var(--ink); }
+
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; justify-content: space-between;
+    padding: 10px 16px;
+    font-size: 11px; color: var(--dim2);
+    letter-spacing: 1px;
+    z-index: 4;
+  }
+
+  /* 点击波纹 */
+  .ripple {
+    position: fixed; border-radius: 50%;
+    border: 1px solid rgba(232,230,227,.35);
+    pointer-events: none;
+    animation: ripple .7s ease-out forwards;
+    z-index: 6;
+  }
+  @keyframes ripple { from { width: 0; height: 0; opacity: 1; } to { width: 120px; height: 120px; opacity: 0; } }
+
+  @media (max-width: 520px) {
+    .broken-wrap { width: 150px; height: 150px; }
+    .code { font-size: 48px; letter-spacing: 8px; margin-right: -8px; }
+    .links { flex-direction: column; gap: 4px; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid" aria-hidden="true"></div>
+
+<main>
+  <div class="broken-wrap" aria-hidden="true">
+    <div class="broken"></div>
+    <div class="broken-core"><span class="x">✕</span></div>
+  </div>
+
+  <div class="code">404</div>
+  <p class="msg"><span id="msgText"></span><span class="cursor">▌</span></p>
+
+  <nav class="links" aria-label="返回导航">
+    <a href="/">← 首页</a>
+    <a href="Projects">Projects</a>
+  </nav>
+</main>
+
+<footer>
+  <span>signal lost</span>
+  <span>© 2026 Mow · GitHub Pages</span>
+</footer>
+
+<script>
+  // 错误信息打字机（循环换行）
+  const LINES = [
+    "> error: page not found in any dimension",
+    "> error: coordinates lead to void",
+    "> try: / or /Projects",
+  ];
+  const el = document.getElementById("msgText");
+  let li = 0, ci = 0, done = false;
+
+  (function type() {
+    const line = LINES[li];
+    el.textContent = "> " + line.slice(0, ci++);
+    if (ci <= line.length) {
+      setTimeout(type, 30);
+    } else {
+      setTimeout(() => {
+        li = (li + 1) % LINES.length;
+        ci = 0;
+        el.textContent = "";
+        type();
+      }, 1600);
+    }
+  })();
+
+  // 点击波纹
+  document.addEventListener("click", (e) => {
+    const r = document.createElement("div");
+    r.className = "ripple";
+    r.style.left = e.clientX + "px";
+    r.style.top = e.clientY + "px";
+    document.body.appendChild(r);
+    setTimeout(() => r.remove(), 750);
+  });
+</script>
+</body>
+</html>
