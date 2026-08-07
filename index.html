@@ -26,9 +26,9 @@
     cursor: crosshair;
   }
 
-  /* 谱面轨道网格背景（可拖拽） */
+/* 谱面轨道网格背景（可拖拽） */
   .grid {
-    position: fixed; inset: -200px;  /* 超出视口保证拖拽时无白边 */
+    position: fixed; inset: -200px;
     background-image:
       linear-gradient(rgba(232,230,227,.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px);
@@ -37,6 +37,9 @@
     z-index: 0;
     will-change: transform;
     touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
   }
 
   /* 噪点 */
@@ -281,6 +284,7 @@
       velX = 0;
       velY = 0;
       grid.style.cursor = "grabbing";
+      document.body.style.userSelect = "none";
     }
 
     function onMove(clientX, clientY) {
@@ -304,6 +308,7 @@
       if (!dragging) return;
       dragging = false;
       grid.style.cursor = "grab";
+      document.body.style.userSelect = "";
       // 启动惯性动画
       if (!animId) animate();
     }
