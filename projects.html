@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>projects - mow2333</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='none' stroke='%23e8e6e3' stroke-width='3' stroke-dasharray='8 6'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' fill='%23e8e6e3' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07070b;
+    --ink: #e8e6e3;
+    --dim: #55535c;
+    --dim2: #3a3942;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    cursor: crosshair;
+  }
+
+  .grid {
+    position: fixed; inset: -120px;
+    background-image:
+      linear-gradient(rgba(232,230,227,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,230,227,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    transform: rotate(12deg);
+    animation: grid-drift 24s linear infinite;
+    z-index: 0;
+  }
+  @keyframes grid-drift { from { background-position: 0 0; } to { background-position: 44px 88px; } }
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(232,230,227,.08) 1px, transparent 1px);
+    background-size: 3px 3px;
+    opacity: .25;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .layout {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+  }
+
+  /* ===== 左上角侧栏 ===== */
+  aside {
+    border-right: 1px solid rgba(232,230,227,.09);
+    padding: 28px 20px;
+    position: sticky; top: 0; height: 100vh;
+    display: flex; flex-direction: column;
+  }
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--dim); text-decoration: none;
+    font-size: 13px; letter-spacing: 1px;
+    margin-bottom: 24px;
+    transition: color .15s ease;
+  }
+  .back:hover { color: var(--ink); }
+  .aside-title {
+    font-size: 22px; font-weight: 500;
+    letter-spacing: 4px; margin-bottom: 4px;
+  }
+  .aside-sub { font-size: 11px; color: var(--dim); letter-spacing: 2px; margin-bottom: 28px; }
+  .project-list { display: flex; flex-direction: column; gap: 2px; }
+  .project-list a {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 9px 10px;
+    text-decoration: none; color: var(--dim);
+    font-size: 14px; letter-spacing: 1px;
+    border-radius: 2px;
+    transition: color .15s ease, background .15s ease;
+    position: relative;
+    cursor: pointer;
+  }
+  .project-list a::after {
+    content: ""; position: absolute;
+    left: 10px; right: 10px; bottom: 4px;
+    height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .2s ease;
+  }
+  .project-list a:hover { color: var(--ink); background: rgba(232,230,227,.045); }
+  .project-list a:hover::after { transform: scaleX(1); }
+  .project-list a.active { color: var(--ink); }
+  .project-list a.active::after { transform: scaleX(1); }
+  .project-list .no { font-size: 11px; color: var(--dim2); min-width: 18px; }
+
+  /* ===== 右侧详情 ===== */
+  main {
+    padding: 56px 48px;
+    max-width: 760px;
+  }
+  .detail h1 {
+    font-size: 30px; font-weight: 500;
+    letter-spacing: 3px; margin-bottom: 18px;
+  }
+  .detail .meta {
+    font-size: 12px; color: var(--dim);
+    letter-spacing: 1px; margin-bottom: 28px;
+  }
+  .detail .desc {
+    font-size: 14px; line-height: 1.9;
+    color: var(--dim); margin-bottom: 36px;
+    letter-spacing: .5px;
+  }
+  .detail .desc b { color: var(--ink); font-weight: 500; }
+  .detail h2 {
+    font-size: 12px; font-weight: 400;
+    color: var(--dim2); letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+  .tags span {
+    font-size: 12px; color: var(--dim);
+    border: 1px solid rgba(232,230,227,.18);
+    padding: 5px 12px; border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .links-row { display: flex; flex-direction: column; gap: 8px; }
+  .links-row a {
+    display: flex; align-items: baseline; gap: 12px;
+    text-decoration: none; color: var(--dim);
+    font-size: 14px; letter-spacing: 1px;
+    padding: 7px 10px; border-radius: 2px;
+    transition: color .15s ease, background .15s ease;
+    position: relative;
+  }
+  .links-row a::after {
+    content: ""; position: absolute;
+    left: 10px; right: 10px; bottom: 4px;
+    height: 1px; background: var(--ink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .2s ease;
+  }
+  .links-row a:hover { color: var(--ink); background: rgba(232,230,227,.045); }
+  .links-row a:hover::after { transform: scaleX(1); }
+  .links-row .path { margin-left: auto; font-size: 11px; color: var(--dim2); }
+  .links-row a:hover .path { color: var(--dim); }
+
+  .placeholder { color: var(--dim2); font-size: 13px; letter-spacing: 2px; }
+  .placeholder .cursor { color: var(--ink); animation: blink 1s step-end infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  footer {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; justify-content: space-between;
+    padding: 10px 16px;
+    font-size: 11px; color: var(--dim2);
+    letter-spacing: 1px;
+    z-index: 4;
+    background: linear-gradient(transparent, rgba(7,7,11,.85));
+  }
+
+  @media (max-width: 720px) {
+    .layout { grid-template-columns: 1fr; }
+    aside {
+      position: static; height: auto;
+      border-right: none; border-bottom: 1px solid rgba(232,230,227,.09);
+      padding: 18px;
+      flex-direction: row; align-items: center; flex-wrap: wrap; gap: 10px 20px;
+    }
+    .back { margin-bottom: 0; }
+    .aside-sub { margin-bottom: 0; }
+    .project-list { flex-direction: row; flex-wrap: wrap; gap: 4px; }
+    main { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid" aria-hidden="true"></div>
+
+<div class="layout">
+  <aside>
+    <a class="back" href="index.html">← /</a>
+    <h1 class="aside-title">projects</h1>
+    <p class="aside-sub">mow2333</p>
+    <nav class="project-list" id="projectList" aria-label="项目列表"></nav>
+  </aside>
+
+  <main>
+    <div class="detail" id="detail"></div>
+  </main>
+</div>
+
+<footer>
+  <span>load 1 world / n links</span>
+  <span>© 2026 Mow · GitHub Pages</span>
+</footer>
+
+<script>
+  // 项目数据：加新项目只需在这里追加
+  const PROJECTS = [
+    {
+      name: "WorldBridge",
+      meta: "Minecraft Forge 模组 · Java",
+      desc: "跨维度传送与维度管理的 <b>Minecraft 模组</b>。三大原创维度、<b>世界之锚</b>与<b>星锚奇点</b>传送装置、<b>红链</b>无线红石信号总线、<b>跨维漏斗</b>物品传输、自定义维度模板与指令创建，成就系统全覆盖。双分支维护（Forge 1.19.4 / 1.20.1）。",
+      tags: ["Forge 1.19.4", "Forge 1.20.1", "Java", "跨维度", "红石"],
+      links: [
+        { label: "Wiki", path: "mow2333.github.io/WorldBridge/", href: "https://mow2333.github.io/WorldBridge/" },
+        { label: "GitHub", path: "github.com/mow2333/WorldBridge", href: "https://github.com/mow2333/WorldBridge" },
+        { label: "Discord", path: "discord.gg/…", href: "https://discord.gg/zxG3zmsR9P" },
+      ],
+    },
+    {
+      name: "???",
+      meta: "待公开",
+      desc: "",
+      tags: [],
+      links: [],
+      placeholder: true,
+    },
+  ];
+
+  const listEl = document.getElementById("projectList");
+  const detailEl = document.getElementById("detail");
+  let current = 0;
+
+  function renderList() {
+    listEl.innerHTML = PROJECTS.map((p, i) =>
+      `<a class="${i === current ? "active" : ""}" data-i="${i}">
+        <span class="no">${String(i + 1).padStart(2, "0")}</span>${p.name}
+      </a>`
+    ).join("");
+    listEl.querySelectorAll("a").forEach(a =>
+      a.addEventListener("click", () => select(+a.dataset.i))
+    );
+  }
+
+  function select(i) {
+    current = i;
+    const p = PROJECTS[i];
+    if (p.placeholder) {
+      detailEl.innerHTML =
+        `<h1>${p.name}</h1>
+         <p class="meta">${p.meta}</p>
+         <p class="placeholder"><span id="phText"></span><span class="cursor">▌</span></p>`;
+      typePlaceholder();
+    } else {
+      detailEl.innerHTML =
+        `<h1>${p.name}</h1>
+         <p class="meta">${p.meta}</p>
+         <p class="desc">${p.desc}</p>
+         <h2>stack</h2>
+         <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join("")}</div>
+         <h2>links</h2>
+         <div class="links-row">
+           ${p.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}<span class="path">${l.path}</span></a>`).join("")}
+         </div>`;
+    }
+    renderList();
+  }
+
+  function typePlaceholder() {
+    const text = "> 更多项目开发中……";
+    const el = document.getElementById("phText");
+    let i = 0;
+    el.textContent = "";
+    (function type() {
+      if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(type, 60); }
+    })();
+  }
+
+  select(0);
+</script>
+</body>
+</html>
