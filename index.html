@@ -175,15 +175,18 @@
     z-index: 4;
   }
 
-  /* 点击波纹 */
+  /* 点击波纹（居中于点击点，向外扩散） */
   .ripple {
-    position: fixed; border-radius: 50%;
+    position: fixed;
+    width: 120px; height: 120px;
+    margin: -60px 0 0 -60px;
+    border-radius: 50%;
     border: 1px solid rgba(232,230,227,.35);
     pointer-events: none;
     animation: ripple .7s ease-out forwards;
     z-index: 6;
   }
-  @keyframes ripple { from { width: 0; height: 0; opacity: 1; } to { width: 120px; height: 120px; opacity: 0; } }
+  @keyframes ripple { from { transform: scale(0); opacity: 1; } to { transform: scale(1); opacity: 0; } }
 
   @media (max-width: 520px) {
     .core-wrap { width: 200px; height: 200px; }
