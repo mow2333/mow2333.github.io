@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>首次创建维度 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link active" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">首次创建维度</h1>
+      <h1 id="首次创建维度">首次创建维度</h1>
+<h2 id="两种创建方式">🎮 两种创建方式</h2>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>适用场景</th>
+<th>优点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GUI 界面</strong></td>
+<td>新手、可视化配置</td>
+<td>所见即所得、参数有提示、可预览</td>
+</tr>
+<tr>
+<td><strong>命令行</strong></td>
+<td>服主、自动化、批量</td>
+<td>可脚本化、适合批量创建、无需打开 GUI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="gui-创建">🖥️ GUI 创建</h2>
+<ol>
+<li>
+<p><strong>打开创建界面</strong>
+   - 聊天栏输入 <code>/worldbridge create</code>
+   - 或在主菜单点击 "WorldBridge" 按钮（需模组加载完成）</p>
+</li>
+<li>
+<p><strong>填写基础信息</strong>
+   | 字段 | 必填 | 说明 |
+   |------|------|------|
+   | 维度名称 | ✅ | 显示在列表、传送提示中，建议 2-16 字符 |
+   | PairID | ✅ | 自动生成 8 位十六进制，不可修改 |
+   | 世界类型 | ✅ | 下拉选择 8 种类型之一 |
+   | 生物群系 | 视类型 | 单一生物群系类型必填 |</p>
+</li>
+<li>
+<p><strong>高级设置（可选）</strong>
+   - <strong>种子</strong> —— 留空随机，指定则固定地形
+   - <strong>难度</strong> —— Peaceful / Easy / Normal / Hard
+   - <strong>生成结构</strong> —— 开启/关闭村庄、要塞、废弃矿井等
+   - <strong>海平面</strong> —— -64 ~ 255，默认 63
+   - <strong>洞穴/矿脉/旧版随机</strong> —— 开关</p>
+</li>
+<li>
+<p><strong>密码保护（可选）</strong>
+   - 勾选 "Enable Password"
+   - 设置 4-16 位密码
+   - 传送时需输入正确密码</p>
+</li>
+<li>
+<p><strong>点击 "Create &amp; Teleport"</strong>
+   - 服务端后台创建维度（约 3-10 秒）
+   - 自动传送到新维度安全落点
+   - 聊天栏提示 <code>Created dimension &lt;name&gt; (pairId: xx)</code></p>
+</li>
+</ol>
+<hr />
+<h2 id="命令行创建">⌨️ 命令行创建</h2>
+<h3 id="基础语法">基础语法</h3>
+<div class="codehilite"><pre><span></span><code>/worldbridge<span class="w"> </span>create<span class="w"> </span>&lt;name&gt;<span class="w"> </span>&lt;worldType&gt;<span class="w"> </span><span class="o">[</span>options...<span class="o">]</span>
+</code></pre></div>
+
+<h3 id="完整参数表">完整参数表</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>简写</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;name&gt;</code></td>
+<td>-</td>
+<td>✅</td>
+<td>维度名称</td>
+</tr>
+<tr>
+<td><code>--biome &lt;biome&gt;</code></td>
+<td><code>-b</code></td>
+<td>单一群系必填</td>
+<td>如 <code>minecraft:meadow</code></td>
+</tr>
+<tr>
+<td><code>--seed &lt;seed&gt;</code></td>
+<td><code>-s</code></td>
+<td>-</td>
+<td>长整数，留空随机</td>
+</tr>
+<tr>
+<td><code>--difficulty &lt;diff&gt;</code></td>
+<td><code>-d</code></td>
+<td>-</td>
+<td><code>peaceful</code> <code>easy</code> <code>normal</code> <code>hard</code></td>
+</tr>
+<tr>
+<td><code>--structures &lt;true/false&gt;</code></td>
+<td><code>-st</code></td>
+<td>-</td>
+<td>默认 true</td>
+</tr>
+<tr>
+<td><code>--sea-level &lt;int&gt;</code></td>
+<td><code>-sl</code></td>
+<td>-</td>
+<td>-64 ~ 255</td>
+</tr>
+<tr>
+<td><code>--caves &lt;true/false&gt;</code></td>
+<td><code>-c</code></td>
+<td>-</td>
+<td>默认 true</td>
+</tr>
+<tr>
+<td><code>--ore-veins &lt;true/false&gt;</code></td>
+<td><code>-ov</code></td>
+<td>-</td>
+<td>默认 true</td>
+</tr>
+<tr>
+<td><code>--legacy-random &lt;true/false&gt;</code></td>
+<td><code>-lr</code></td>
+<td>-</td>
+<td>默认 false</td>
+</tr>
+<tr>
+<td><code>--password &lt;pwd&gt;</code></td>
+<td><code>-p</code></td>
+<td>-</td>
+<td>4-16 位，留空无密码</td>
+</tr>
+<tr>
+<td><code>--difficulty-lock &lt;true/false&gt;</code></td>
+<td><code>-dl</code></td>
+<td>-</td>
+<td>锁定难度不可改</td>
+</tr>
+</tbody>
+</table>
+<h3 id="示例">示例</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 创建一个默认世界</span>
+/worldbridge<span class="w"> </span>create<span class="w"> </span>MyWorld<span class="w"> </span>default
+
+<span class="c1"># 创建单一生物群系（繁花丘陵），指定种子</span>
+/worldbridge<span class="w"> </span>create<span class="w"> </span>FlowerWorld<span class="w"> </span>single_biome<span class="w"> </span>--biome<span class="w"> </span>minecraft:meadow<span class="w"> </span>--seed<span class="w"> </span><span class="m">123456789</span>
+
+
+<span class="c1"># 创建星界之野，关闭结构</span>
+/worldbridge<span class="w"> </span>create<span class="w"> </span>VoidIsles<span class="w"> </span>aetherial_fields<span class="w"> </span>--structures<span class="w"> </span><span class="nb">false</span>
+</code></pre></div>
+
+<hr />
+<h2 id="创建后验证">✅ 创建后验证</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 查看所有维度</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>list
+
+<span class="c1"># 传送到刚创建的维度（世界桥维度需提供坐标）</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>tp<span class="w"> </span>world_bridge:a3f2b1c4<span class="w"> </span>~<span class="w"> </span>~<span class="w"> </span>~
+
+<span class="c1"># 查看维度详情</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>info<span class="w"> </span>&lt;pairId&gt;
+</code></pre></div>
+
+<hr />
+<h2 id="常见坑">⚠️ 常见坑</h2>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>解决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>World type 'xxx' not found</code></td>
+<td>检查世界类型拼写，区分大小写下划线</td>
+</tr>
+<tr>
+<td><code>Biome required for single_biome</code></td>
+<td>单一生物群系类型必须加 <code>--biome</code></td>
+</tr>
+<tr>
+<td><code>Password too short/long</code></td>
+<td>密码长度 4-16 字符</td>
+</tr>
+<tr>
+<td>创建后传送失败</td>
+<td>查看日志 <code>latest.log</code>，通常是安全落点扫描超时，可尝试 <code>--seed</code> 指定种子</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="小技巧">💡 小技巧</h2>
+<ul>
+<li><strong>批量创建</strong>：写脚本循环调用 <code>/worldbridge create</code>，配合 <code>--seed</code> 固定地形</li>
+<li><strong>模板复用</strong>：先用 GUI 创建一个满意的，用 <code>/worldbridge info &lt;name&gt;</code> 导出参数，再用命令行批量复制</li>
+<li><strong>备份种子</strong>：重要维度记下种子，万一世界损坏可用种子重建</li>
+</ul>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Getting-Started/Installation">← 安装与配置</a><a class="next" href="/WorldBridge/Getting-Started/Commands">命令大全 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Getting-Started/First-Dimension">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#两种创建方式">🎮 两种创建方式</a></li><li><a href="#gui-创建">🖥️ GUI 创建</a></li><li><a href="#命令行创建">⌨️ 命令行创建</a></li><li><a href="#创建后验证">✅ 创建后验证</a></li><li><a href="#常见坑">⚠️ 常见坑</a></li><li><a href="#小技巧">💡 小技巧</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>

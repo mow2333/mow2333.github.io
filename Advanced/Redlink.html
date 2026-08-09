@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>红链系统 — 无线红石信号总线 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link active" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">红链系统 — 无线红石信号总线</h1>
+      <h1 id="红链系统-无线红石信号总线">红链系统 — 无线红石信号总线</h1>
+<blockquote>
+<p>版本：0.2.0
+基于 Redlink 核心逻辑完整移植，跨维度零延迟无线红石信号传输。</p>
+</blockquote>
+<hr />
+<h2 id="概述">概述</h2>
+<p>红链系统提供<strong>跨维度、零延迟、同 tick</strong> 的红石信号传输。通过红链扳手配对两个红链方块，发射器端的红石信号变化会瞬间同步到接收器端，即使它们在不同维度。</p>
+<hr />
+<h2 id="核心方块-5-种">核心方块（5 种）</h2>
+<h3 id="红链方块-redlink_block">红链方块 (<code>redlink_block</code>)</h3>
+<p>单方块双模式，核心信号传输方块：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>注册名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>发射器 (Input)</strong></td>
+<td><code>output_mode=false</code></td>
+<td>每 tick/邻居变化读取六面红石信号最大值 → 同步给对端接收器</td>
+</tr>
+<tr>
+<td><strong>接收器 (Output)</strong></td>
+<td><code>output_mode=true</code></td>
+<td>收到对端信号 → 六面全输出该强度</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>用<strong>红链扳手</strong>右键切换模式</li>
+<li><code>FACING</code> 状态控制模型朝向（不影响信号读取/输出）</li>
+</ul>
+<h3 id="红链按钮-redlink_button">红链按钮 (<code>redlink_button</code>)</h3>
+<ul>
+<li>右键发出 15 强度信号，自动复位</li>
+<li>类似原版按钮，但信号强度固定为 15</li>
+</ul>
+<h3 id="红链拉杆-redlink_lever">红链拉杆 (<code>redlink_lever</code>)</h3>
+<ul>
+<li>右键切换持续 15 强度信号</li>
+<li>类似原版拉杆，但信号强度固定为 15</li>
+</ul>
+<h3 id="红链压力板-redlink_pressure_plate">红链压力板 (<code>redlink_pressure_plate</code>)</h3>
+<ul>
+<li>实体站立发出 15 强度信号</li>
+<li>类似原版压力板，但信号强度固定为 15</li>
+</ul>
+<h3 id="以太触发器-ether_trigger_block">以太触发器 (<code>ether_trigger_block</code>)</h3>
+<p>高级触发器方块，支持 5 种触发类型：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PLAYER</strong></td>
+<td>玩家进入区域时触发</td>
+</tr>
+<tr>
+<td><strong>ENTITY</strong></td>
+<td>任意实体进入区域时触发</td>
+</tr>
+<tr>
+<td><strong>ITEM</strong></td>
+<td>物品进入区域时触发</td>
+</tr>
+<tr>
+<td><strong>TIMER</strong></td>
+<td>按可配置间隔（20-256 tick）周期性触发</td>
+</tr>
+<tr>
+<td><strong>WEATHER</strong></td>
+<td>天气变化时触发</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>区域检测：用红链触发工具两次右键设定区域角点</li>
+<li>客户端 GUI（<code>TriggerSelectionScreen</code>）配置触发类型和参数</li>
+</ul>
+<hr />
+<h2 id="物品-4-种">物品（4 种）</h2>
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th>注册名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>红链扳手</strong></td>
+<td><code>redlink_wrench</code></td>
+<td>配对工具：右键配对/切换模式</td>
+</tr>
+<tr>
+<td><strong>红链触发工具</strong></td>
+<td><code>redlink_trigger_item</code></td>
+<td>以太触发器配置工具</td>
+</tr>
+<tr>
+<td><strong>红链方块物品</strong></td>
+<td><code>redlink_block</code></td>
+<td>常规方块物品</td>
+</tr>
+<tr>
+<td><strong>各红链源方块物品</strong></td>
+<td><code>redlink_button/lever/pressure_plate</code></td>
+<td>常规方块物品</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="配对系统">配对系统</h2>
+<h3 id="配对流程">配对流程</h3>
+<div class="codehilite"><pre><span></span><code>1. 手持红链扳手 → 右键点击方块 A → 扳手记录选择（音效 + 提示）
+2. 再右键点击方块 B → 自动配对：
+   - 生成随机 pairId
+   - 双向写入 pairedPos/pairedDimension/pairId
+   - 播放配对音效、发送聊天提示
+3. 已配对再次点击同对端 → 解除配对
+4. 已配对点击其他方块 → 提示&quot;已配对&quot;
+</code></pre></div>
+
+<h3 id="活跃配对索引">活跃配对索引</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 静态 Map，跨维度 O(1) 查找</span>
+<span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">PairEntry</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ACTIVE_PAIRS</span><span class="p">;</span>
+<span class="c1">// pairId -&gt; [(pos, dim), ...]</span>
+</code></pre></div>
+
+<h3 id="nbt-持久化">NBT 持久化</h3>
+<p>配对数据通过 NBT 全量持久化：
+- <code>paired_x</code>、<code>paired_y</code>、<code>paired_z</code> — 对端坐标
+- <code>paired_dimension</code> — 对端维度（如 <code>world_bridge:cmd_xxx</code>）
+- <code>pairId</code> — 配对唯一 ID
+- <code>signal_strength</code> — 当前信号强度</p>
+<hr />
+<h2 id="信号传递逻辑-零延迟、同-tick">信号传递逻辑（零延迟、同 tick）</h2>
+<h3 id="发射器-接收器">发射器 → 接收器</h3>
+<div class="codehilite"><pre><span></span><code>1. 发射器侧：readInputSignal() 读六面取最大值
+2. signalStrength 变化 → setBlock(POWERED) → syncClient()
+3. 调用对端 evaluateSignal() → 接收器侧更新 signalStrength
+4. 接收器 setBlock(POWERED) → 六面输出 → syncClient()
+</code></pre></div>
+
+<h3 id="跨维度核心实现">跨维度核心实现</h3>
+<p>跨维度零封装、零代理、零网络包：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>实现</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>存</strong></td>
+<td><code>ResourceKey&lt;Level&gt;</code> → NBT 字符串</td>
+<td>跨存档/重启持久化</td>
+</tr>
+<tr>
+<td><strong>取</strong></td>
+<td><code>server.getLevel(ResourceKey)</code></td>
+<td>维度未加载 → <strong>自动同步加载</strong></td>
+</tr>
+<tr>
+<td><strong>传</strong></td>
+<td>直接跨 <code>Level</code> 访问方块实体</td>
+<td>同 tick 零延迟，无网络包开销</td>
+</tr>
+</tbody>
+</table>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 跨维度获取对端 Level（自动加载）</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="nf">getPairLevel</span><span class="p">(</span><span class="n">Level</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">RedlinkBlockEntity</span><span class="w"> </span><span class="n">rbe</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rbe</span><span class="p">.</span><span class="na">pairedDimension</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">rbe</span><span class="p">.</span><span class="na">pairedDimension</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">level</span><span class="p">.</span><span class="na">dimension</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">ServerLevel</span><span class="w"> </span><span class="n">sl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">sl</span><span class="p">.</span><span class="na">getServer</span><span class="p">().</span><span class="na">getLevel</span><span class="p">(</span><span class="n">rbe</span><span class="p">.</span><span class="na">pairedDimension</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">level</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>关键点</strong>：<code>Server.getLevel(ResourceKey)</code> 内部会自动同步加载维度，无需手动调用传送或发包。</p>
+</blockquote>
+<h3 id="兼容的触发源">兼容的触发源</h3>
+<ul>
+<li>红石粉、红石块、红石火把、红石比较器</li>
+<li>红石火把、红石灯、活塞、发射器、投掷器</li>
+<li>方块实体（比较器输出、漏斗、乐器方块等）</li>
+<li>模组红石（通过 <code>level.getSignal()</code> 统一获取）</li>
+</ul>
+<hr />
+<h2 id="指令系统">指令系统</h2>
+<h3 id="worldbridge-redlink"><code>/worldbridge redlink</code></h3>
+<div class="codehilite"><pre><span></span><code>worldbridge
+└── redlink
+    ├── pair list                    # 列出所有配对
+    ├── pair disconnect &lt;pairId&gt;     # 解除配对
+    ├── pair locate &lt;pairId&gt;         # 定位配对
+    ├── trigger list                 # 列出以太触发器
+    ├── trigger info &lt;pos&gt;           # 查看触发器详情
+    ├── trigger clear &lt;pos&gt;          # 清除触发器区域
+    └── trigger setregion &lt;pos&gt;      # 设置检测区域
+</code></pre></div>
+
+<h3 id="坐标格式">坐标格式</h3>
+<div class="codehilite"><pre><span></span><code>&lt;pos&gt; := &lt;dimensionId&gt; &lt;x&gt; &lt;y&gt; &lt;z&gt;
+例：world_bridge:cmd_abc 100 64 -200
+</code></pre></div>
+
+<hr />
+<h2 id="网络包-5-种">网络包（5 种）</h2>
+<table>
+<thead>
+<tr>
+<th>包</th>
+<th>方向</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RedlinkPairPacket</code></td>
+<td>C→S</td>
+<td>配对/解除配对请求</td>
+</tr>
+<tr>
+<td><code>RedlinkModePacket</code></td>
+<td>C→S</td>
+<td>模式切换</td>
+</tr>
+<tr>
+<td><code>RedlinkSyncPacket</code></td>
+<td>S→C</td>
+<td>信号强度/配对状态同步</td>
+</tr>
+<tr>
+<td><code>RedlinkListPacket</code></td>
+<td>S→C</td>
+<td><code>/wb redlink list</code> 数据</td>
+</tr>
+<tr>
+<td><code>C2STriggerSelectPacket</code></td>
+<td>C→S</td>
+<td>触发器选择/配置</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="服务端配置">服务端配置</h2>
+<p>在 <code>worldbridge-server.toml</code> 的 <code>[redlink]</code> 段：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[redlink]</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">                    </span><span class="c1"># 总开关</span>
+<span class="n">max_pairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10000</span><span class="w">                 </span><span class="c1"># 全服最大配对数</span>
+<span class="n">allow_cross_dimension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">      </span><span class="c1"># 允许跨维度</span>
+<span class="n">auto_load_target_dimension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c1"># 目标维度自动加载</span>
+<span class="n">pairing_tool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;worldbridge:redlink_wrench&quot;</span><span class="w">  </span><span class="c1"># 配对工具ID</span>
+</code></pre></div>
+
+<hr />
+<h2 id="音效-4-种">音效（4 种）</h2>
+<table>
+<thead>
+<tr>
+<th>注册名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PAIR</code></td>
+<td>配对成功</td>
+</tr>
+<tr>
+<td><code>UNPAIR</code></td>
+<td>解除配对</td>
+</tr>
+<tr>
+<td><code>SELECT</code></td>
+<td>选择方块</td>
+</tr>
+<tr>
+<td><code>CLEAR</code></td>
+<td>清除配置</td>
+</tr>
+<tr>
+<td><code>AMBIENT_LAB</code></td>
+<td>环境音效（预留）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="双分支差异">双分支差异</h2>
+<table>
+<thead>
+<tr>
+<th>点</th>
+<th>1.19.4</th>
+<th>1.20.1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ResourceKey&lt;Level&gt;</code></td>
+<td><code>ResourceLocation</code></td>
+<td><code>ResourceKey.create()</code></td>
+</tr>
+<tr>
+<td><code>Level</code> 获取</td>
+<td><code>server.getLevel()</code></td>
+<td>同</td>
+</tr>
+<tr>
+<td>方块实体渲染</td>
+<td><code>BlockEntityRenderer</code> + <code>PoseStack</code></td>
+<td><code>BlockEntityRenderer</code> + <code>GuiGraphics</code></td>
+</tr>
+<tr>
+<td>网络缓冲区</td>
+<td><code>FriendlyByteBuf</code></td>
+<td>同</td>
+</tr>
+<tr>
+<td>核心文件数</td>
+<td>20 源文件</td>
+<td>21 源文件（含 <code>BiomeGroup.java</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>核心逻辑 100% 共用，仅渲染/注册层分文件。</p>
+</blockquote>
+<hr />
+<h2 id="后续可扩展">后续可扩展</h2>
+<ul>
+<li><strong>频道广播</strong>：一对多、多对一、总线制</li>
+<li><strong>信号处理</strong>：延迟器、脉冲延长、锁存器、时钟发生器</li>
+<li><strong>无线红石粉</strong>：放置即连接同频道</li>
+<li><strong>逻辑门方块</strong>：与/或/非/异或</li>
+<li><strong>频道可视化</strong>：维度地球仪显示红链连接</li>
+<li><strong>能量消耗模式</strong>：FE/RF/物品燃料</li>
+</ul>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Advanced/Star-Anchor-Light">← 星锚动态光源</a><a class="next" href="/WorldBridge/Advanced/Datapack">数据包 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Advanced/Redlink">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#概述">概述</a></li><li><a href="#核心方块-5-种">核心方块（5 种）</a></li><li><a href="#物品-4-种">物品（4 种）</a></li><li><a href="#配对系统">配对系统</a></li><li><a href="#信号传递逻辑-零延迟、同-tick">信号传递逻辑（零延迟、同 tick）</a></li><li><a href="#指令系统">指令系统</a></li><li><a href="#网络包-5-种">网络包（5 种）</a></li><li><a href="#服务端配置">服务端配置</a></li><li><a href="#音效-4-种">音效（4 种）</a></li><li><a href="#双分支差异">双分支差异</a></li><li><a href="#后续可扩展">后续可扩展</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>

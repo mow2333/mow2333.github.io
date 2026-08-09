@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>权限与上限 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link active" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">权限与上限</h1>
+      <h1 id="权限与上限">权限与上限</h1>
+<h2 id="权限等级对照">🔑 权限等级对照</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>最低 OP 级别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/worldbridge</code> (无参数打开 GUI 创建)</td>
+<td>OP 2</td>
+<td>创建维度 (GUI)</td>
+</tr>
+<tr>
+<td><code>/worldbridge tp &lt;dimension&gt; [player]</code></td>
+<td>OP 2</td>
+<td>传送</td>
+</tr>
+<tr>
+<td><code>/worldbridge list</code></td>
+<td>OP 2</td>
+<td>列出维度</td>
+</tr>
+<tr>
+<td><code>/worldbridge edit &lt;pairId&gt;</code></td>
+<td>OP 2</td>
+<td>编辑维度配置 (GUI)</td>
+</tr>
+<tr>
+<td><code>/worldbridge rename &lt;pairId&gt; &lt;name&gt;</code></td>
+<td>OP 2</td>
+<td>重命名</td>
+</tr>
+<tr>
+<td><code>/worldbridge delete &lt;pairId&gt;</code></td>
+<td><strong>OP 3</strong></td>
+<td>删除维度 (高危)</td>
+</tr>
+<tr>
+<td><code>/worldbridge reload</code></td>
+<td>OP 2</td>
+<td>热重载配置</td>
+</tr>
+<tr>
+<td><code>/worldbridge resetpassword &lt;pairId&gt;</code></td>
+<td>OP 2</td>
+<td>重置密码</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>OP 级别对应 <code>server.properties</code> 的 <code>op-permission-level</code></strong>：
+- OP 2 = <code>op-permission-level=2</code> (默认)
+- OP 3 = <code>op-permission-level=3</code> (仅服主/最高管理)</p>
+</blockquote>
+<hr />
+<h2 id="维度上限配置">📊 维度上限配置</h2>
+<p>配置文件 <code>worldbridge-server.toml</code>：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[dimension]</span>
+<span class="n">maxDimensionsPerPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="w">  </span><span class="c1"># -1 = 无限制，0 = 禁止创建，&gt;0 限制数量</span>
+</code></pre></div>
+
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-1</code></td>
+<td>无限制 (默认)</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>禁止所有玩家创建维度 (仅 OP 可通过命令创建)</td>
+</tr>
+<tr>
+<td><code>N &gt; 0</code></td>
+<td>每个玩家最多创建 N 个维度，超限提示 <code>Maximum dimensions reached</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>注意</strong>：OP 玩家不受此限制，始终可创建。</p>
+</blockquote>
+<hr />
+<h2 id="维度密码与权限">🔐 维度密码与权限</h2>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>权限要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建时设密码</td>
+<td>OP 2 (创建权限)</td>
+</tr>
+<tr>
+<td>传送时输密码</td>
+<td>无需 OP，知密码即可</td>
+</tr>
+<tr>
+<td>OP 强制重置密码</td>
+<td>OP 2 (<code>/worldbridge resetpassword &lt;pairId&gt;</code>)</td>
+</tr>
+<tr>
+<td>取消密码保护</td>
+<td>同上 (重置为空)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>密码以 SHA-256 哈希存储，原文不落盘。</p>
+</blockquote>
+<hr />
+<h2 id="维度删除保护">🛡️ 维度删除保护</h2>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>维度内有玩家</td>
+<td><strong>拒绝删除</strong>，提示 <code>Cannot delete: players still inside</code></td>
+</tr>
+<tr>
+<td>维度不存在</td>
+<td>报错 <code>Dimension not found</code></td>
+</tr>
+<tr>
+<td>无权限</td>
+<td>提示 <code>Insufficient permission</code> (需 OP 3)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>删除前会二次确认：需再次输入 PairID 确认。</p>
+</blockquote>
+<hr />
+<h2 id="建议权限分配策略">🛡️ 建议权限分配策略</h2>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>推荐 OP 级别</th>
+<th>可执行命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通玩家</td>
+<td>无 OP</td>
+<td>仅传送 (知密码)、查看列表</td>
+</tr>
+<tr>
+<td>普通管理员</td>
+<td>OP 2</td>
+<td>创建/传送/编辑/重命名/重置密码/重载配置</td>
+</tr>
+<tr>
+<td>服主/最高管理</td>
+<td>OP 3</td>
+<td>全部权限 + <strong>删除维度</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>建议</strong>：仅服主/最高信任管理设为 OP 3，普通管理给 OP 2。</p>
+</blockquote>
+<hr />
+<h2 id="相关页面">🔗 相关页面</h2>
+<ul>
+<li><a href="/WorldBridge/Server-Config">配置文件详解</a> — 完整配置项说明</li>
+<li><a href="/WorldBridge/../Getting-Started/Commands">命令大全</a> — 完整命令参考</li>
+<li><a href="/WorldBridge/../Advanced/Faq#权限与配置">常见问题</a> — 权限相关报错排查</li>
+</ul>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Config/Server-Config">← 服务端配置</a><a class="next" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Config/Permissions">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#权限等级对照">🔑 权限等级对照</a></li><li><a href="#维度上限配置">📊 维度上限配置</a></li><li><a href="#维度密码与权限">🔐 维度密码与权限</a></li><li><a href="#维度删除保护">🛡️ 维度删除保护</a></li><li><a href="#建议权限分配策略">🛡️ 建议权限分配策略</a></li><li><a href="#相关页面">🔗 相关页面</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>

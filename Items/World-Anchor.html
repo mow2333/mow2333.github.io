@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>世界之锚 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link active" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">世界之锚</h1>
+      <h1 id="世界之锚">世界之锚</h1>
+<h2 id="基础信息">📦 基础信息</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>注册名</strong></td>
+<td><code>world_bridge:world_anchor</code></td>
+</tr>
+<tr>
+<td><strong>最大堆叠</strong></td>
+<td>1</td>
+</tr>
+<tr>
+<td><strong>稀有度</strong></td>
+<td>普通</td>
+</tr>
+<tr>
+<td><strong>硬度</strong></td>
+<td>50.0</td>
+</tr>
+<tr>
+<td><strong>抗爆炸</strong></td>
+<td>1200.0</td>
+</tr>
+<tr>
+<td><strong>最佳工具</strong></td>
+<td>镐 (等级 3+)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="核心功能">⚙️ 核心功能</h2>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>触发</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>跨维传送</strong></td>
+<td>右键 / 红石信号</td>
+<td>传送到绑定的配对锚点 (跨维度)</td>
+</tr>
+<tr>
+<td><strong>红石触发</strong></td>
+<td>信号强度 &gt; 0</td>
+<td>范围内实体传送到绑定锚点</td>
+</tr>
+<tr>
+<td><strong>Chunk 常加载</strong></td>
+<td>放置后自动</td>
+<td>所在 Chunk 强制加载，移除后移除</td>
+</tr>
+<tr>
+<td><strong>祝福光环</strong></td>
+<td>玩家进入范围</td>
+<td>范围内玩家每 4 秒获得再生 + 抗性</td>
+</tr>
+<tr>
+<td><strong>过载模式</strong></td>
+<td>星锚奇点右键</td>
+<td>60 秒：范围翻倍、效果强度 II</td>
+</tr>
+<tr>
+<td><strong>Chunk 常加载</strong></td>
+<td>放置后自动</td>
+<td>所在 Chunk 强制加载，移除后移除</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="交互方式">🎮 交互方式</h2>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>打开控制面板</strong></td>
+<td>右键方块</td>
+<td>打开 GUI</td>
+</tr>
+<tr>
+<td><strong>红石触发</strong></td>
+<td>红石信号 &gt; 0</td>
+<td>范围内实体传送到配对锚点</td>
+</tr>
+<tr>
+<td><strong>过载充能</strong></td>
+<td>手持星锚奇点右键方块</td>
+<td>消耗 1 个星锚奇点，过载 60 秒</td>
+</tr>
+<tr>
+<td><strong>重命名</strong></td>
+<td>GUI 点击 ✏ / 命令</td>
+<td>显示在面板、传送提示、Tab 补全</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="控制面板">📋 控制面板</h2>
+<p>打开 GUI 显示：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PairID</strong></td>
+<td>8 位十六进制，唯一标识</td>
+</tr>
+<tr>
+<td><strong>名称</strong></td>
+<td>自定义名，显示在传送提示、Tab 补全</td>
+</tr>
+<tr>
+<td><strong>状态</strong></td>
+<td>LOADED / UNLOADED / OVERCHARGED</td>
+</tr>
+<tr>
+<td><strong>过载剩余</strong></td>
+<td>剩余秒数 (过载时)</td>
+</tr>
+<tr>
+<td><strong>冷却剩余</strong></td>
+<td>冷却倒计时</td>
+</tr>
+<tr>
+<td><strong>配对锚点</strong></td>
+<td>显示配对锚点的 PairID、名称、坐标、维度</td>
+</tr>
+<tr>
+<td><strong>传送范围</strong></td>
+<td>当前生效范围 (过载时翻倍)</td>
+</tr>
+<tr>
+<td><strong>祝福范围/等级</strong></td>
+<td>当前生效范围与等级</td>
+</tr>
+<tr>
+<td><strong>操作按钮</strong></td>
+<td>传送、过载、重命名、设置密码</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="配对机制">🔗 配对机制</h2>
+<table>
+<thead>
+<tr>
+<th>规则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>配对</strong></td>
+<td>放置两个锚点 → 右键第一个 → 右键第二个 → 自动配对</td>
+</tr>
+<tr>
+<td><strong>唯一性</strong></td>
+<td>一个锚点只能与一个锚点配对</td>
+</tr>
+<tr>
+<td><strong>跨维度</strong></td>
+<td>支持跨维度配对与传送</td>
+</tr>
+<tr>
+<td><strong>去重</strong></td>
+<td>同维度 + 同坐标 = 复用已有锚点</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="过载模式">⚡ 过载模式</h2>
+<table>
+<thead>
+<tr>
+<th>触发</th>
+<th>手持星锚奇点右键世界之锚</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>消耗</td>
+<td>1 个星锚奇点</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>60 秒 (1200 tick)</td>
+</tr>
+<tr>
+<td>效果</td>
+<td>传送范围 ×2、祝福范围 ×2、祝福等级 II</td>
+</tr>
+<tr>
+<td>视觉</td>
+<td>旋转 ENCHANT / END_ROD 粒子环</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="黑名单-不可传送方块">🛡️ 黑名单（不可传送方块）</h2>
+<table>
+<thead>
+<tr>
+<th>方块</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基岩</td>
+<td>防止传送到基岩层卡死</td>
+</tr>
+<tr>
+<td>末地传送门</td>
+<td>防止传送进传送门实体</td>
+</tr>
+<tr>
+<td>末地传送门框架</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="自定义名称">🎨 自定义名称</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 命令行</span>
+/worldbridge<span class="w"> </span>rename<span class="w"> </span>&lt;pairId&gt;<span class="w"> </span><span class="s2">&quot;My Base&quot;</span>
+
+<span class="c1"># GUI</span>
+/worldbridge<span class="w"> </span>edit<span class="w"> </span>&lt;pairId&gt;<span class="w"> </span>→<span class="w"> </span>点击<span class="w"> </span>✏<span class="w"> </span>重命名<span class="w"> </span>→<span class="w"> </span>输入新名
+</code></pre></div>
+
+<ul>
+<li>显示在：控制面板标题、传送提示、Tab 补全提示</li>
+<li>PairID 不变，锚点绑定不受影响</li>
+</ul>
+<hr />
+<h2 id="合成配方">💎 合成配方</h2>
+<div class="codehilite"><pre><span></span><code>下界合金锭  紫珀块  下界合金锭
+紫珀块      星锚奇点  紫珀块
+下界合金锭  紫珀块  下界合金锭
+</code></pre></div>
+
+<hr />
+<h2 id="红石触发细节">🛡️ 红石触发细节</h2>
+<table>
+<thead>
+<tr>
+<th>信号强度</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>无反应</td>
+</tr>
+<tr>
+<td>1-15</td>
+<td>触发传送，范围内所有实体传送到配对锚点</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>可配合红石钟、观察者、日光传感器做自动传送装置。</p>
+</blockquote>
+<hr />
+<h2 id="获取途径">💎 获取途径</h2>
+<table>
+<thead>
+<tr>
+<th>途径</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>合成</td>
+<td>见上方配方</td>
+</tr>
+<tr>
+<td>创造模式物品栏</td>
+<td>搜索 "World Anchor"</td>
+</tr>
+<tr>
+<td>命令</td>
+<td><code>/give @p world_bridge:world_anchor</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="相关页面">🔗 相关页面</h2>
+<ul>
+<li><a href="/WorldBridge/Star-Anchor">星锚奇点</a> — 过载充能、虚空护盾、召回目标</li>
+<li><a href="/WorldBridge/../Advanced/Anchor-Gui">世界之锚控制面板</a> — GUI 详解</li>
+<li><a href="/WorldBridge/../Advanced/Star-Anchor-Light">星锚动态光源</a> — 动态光源实现原理</li>
+</ul>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Dimensions/Password">← 密码保护</a><a class="next" href="/WorldBridge/Items/Star-Anchor">星锚奇点 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Items/World-Anchor">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#基础信息">📦 基础信息</a></li><li><a href="#核心功能">⚙️ 核心功能</a></li><li><a href="#交互方式">🎮 交互方式</a></li><li><a href="#控制面板">📋 控制面板</a></li><li><a href="#配对机制">🔗 配对机制</a></li><li><a href="#过载模式">⚡ 过载模式</a></li><li><a href="#黑名单-不可传送方块">🛡️ 黑名单（不可传送方块）</a></li><li><a href="#自定义名称">🎨 自定义名称</a></li><li><a href="#合成配方">💎 合成配方</a></li><li><a href="#红石触发细节">🛡️ 红石触发细节</a></li><li><a href="#获取途径">💎 获取途径</a></li><li><a href="#相关页面">🔗 相关页面</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>常用命令 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link active" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">常用命令</h1>
+      <h1 id="常用命令">常用命令</h1>
+<h2 id="命令总览">📋 命令总览</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/worldbridge create</code></td>
+<td>OP 2</td>
+<td>创建新维度</td>
+</tr>
+<tr>
+<td><code>/worldbridge world create &lt;dimId&gt; &lt;typeAndJson&gt;</code></td>
+<td>OP 2</td>
+<td>命令行创建指令维度（含内联 JSON 全参数）</td>
+</tr>
+<tr>
+<td><code>/worldbridge world tp &lt;targetDim&gt; [player] [x y z]</code></td>
+<td>OP 2</td>
+<td>传送，世界桥维度需提供坐标</td>
+</tr>
+<tr>
+<td><code>/worldbridge world list</code></td>
+<td>OP 2</td>
+<td>列出所有已创建维度</td>
+</tr>
+<tr>
+<td><code>/worldbridge world edit &lt;pairId&gt;</code></td>
+<td>OP 2</td>
+<td>编辑维度配置（GUI）</td>
+</tr>
+<tr>
+<td><code>/worldbridge world rename &lt;pairId&gt; &lt;name&gt;</code></td>
+<td>OP 2</td>
+<td>重命名维度</td>
+</tr>
+<tr>
+<td><code>/worldbridge world delete &lt;pairId&gt;</code></td>
+<td>OP 3</td>
+<td>删除维度（需确认）</td>
+</tr>
+<tr>
+<td><code>/worldbridge world resetpassword &lt;pairId&gt;</code></td>
+<td>OP 2</td>
+<td>重置维度密码</td>
+</tr>
+<tr>
+<td><code>/worldbridge reload</code></td>
+<td>OP 2</td>
+<td>热重载服务端配置</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink pair list</code></td>
+<td>OP 2</td>
+<td>列出所有红链配对</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink pair disconnect &lt;pairId&gt;</code></td>
+<td>OP 2</td>
+<td>解除指定配对</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink pair locate &lt;pairId&gt;</code></td>
+<td>OP 2</td>
+<td>定位配对位置</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink trigger list</code></td>
+<td>OP 2</td>
+<td>列出所有以太触发器</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink trigger info &lt;pos&gt;</code></td>
+<td>OP 2</td>
+<td>查看触发器详情</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink trigger clear &lt;pos&gt;</code></td>
+<td>OP 2</td>
+<td>清除触发器区域</td>
+</tr>
+<tr>
+<td><code>/worldbridge redlink trigger setregion &lt;pos&gt;</code></td>
+<td>OP 2</td>
+<td>设置触发器检测区域</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>权限等级</strong>：OP 2 = <code>op-permission-level=2</code>，OP 3 = <code>op-permission-level=3</code>（服务端 <code>server.properties</code> 设置）</p>
+</blockquote>
+<hr />
+<h2 id="详细用法">📖 详细用法</h2>
+<h3 id="worldbridge-create"><code>/worldbridge create</code></h3>
+<div class="codehilite"><pre><span></span><code>/worldbridge<span class="w"> </span>create<span class="w"> </span>&lt;name&gt;<span class="w"> </span>&lt;worldType&gt;<span class="w"> </span><span class="o">[</span>options...<span class="o">]</span>
+</code></pre></div>
+
+<p>详见 <a href="/WorldBridge/First-Dimension#命令行创建">首次创建维度</a></p>
+<hr />
+<h3 id="worldbridge-world-create"><code>/worldbridge world create &lt;dimId&gt; &lt;typeAndJson&gt;</code></h3>
+<p>命令行直接创建指令维度，支持内联 JSON 全参数配置。</p>
+<p><strong>参数</strong>：
+- <code>&lt;dimId&gt;</code> —— 维度 ID（字母数字下划线，如 <code>myworld</code>、<code>nether_2</code>）
+- <code>&lt;typeAndJson&gt;</code> —— 世界类型 + 可选 JSON 配置，如 <code>default{"name":"MyWorld","difficulty":"hard"}</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 创建默认维度</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>create<span class="w"> </span>myworld<span class="w"> </span>default
+
+
+<span class="c1"># 使用自定义模板</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>create<span class="w"> </span>custom_world<span class="w"> </span>custom:mytemplate
+</code></pre></div>
+
+<p><strong>JSON 可配置字段</strong>：name、seed、biome、structures、difficulty、dim_type、generation（sea_level/surface_block/stone_block...）、stacking（min_y/max_y）、gameRules、spawnSettings、visual、effects、respawn</p>
+<hr />
+<h3 id="worldbridge-world-tp-player-x-y-z"><code>/worldbridge world tp &lt;targetDim&gt; [player] [x y z]</code></h3>
+<p>传送指定玩家（或自己）到目标维度，<strong>世界桥维度间传送需提供坐标</strong>。</p>
+<p><strong>参数</strong>：
+- <code>&lt;targetDim&gt;</code> —— <strong>完整维度 ResourceLocation</strong>，如 <code>world_bridge:a3f2b1c4</code>、<code>minecraft:the_nether</code>
+- <code>[player]</code> —— 可选，目标玩家名，默认自己
+- <code>[x y z]</code> —— 可选坐标（来源或目标涉及世界桥维度时必填）</p>
+<p><strong>坐标规则</strong>：
+- 来源或目标任意一侧是 <code>world_bridge:</code> 维度 → 必须提供 <code>x y z</code>（否则弹出坐标输入界面）
+- 两边都是原版 <code>minecraft:</code> 维度 → 不需要坐标</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 传送自己到自定义维度（需提供坐标）</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>tp<span class="w"> </span>world_bridge:a3f2b1c4<span class="w"> </span>~<span class="w"> </span>~<span class="w"> </span>~
+
+<span class="c1"># 传送 Steve 到下界（不需要坐标，因为两边都是原版维度）</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>tp<span class="w"> </span>minecraft:the_nether<span class="w"> </span>Steve
+
+<span class="c1"># 从主世界传送到世界桥维度（需要坐标）</span>
+/worldbridge<span class="w"> </span>world<span class="w"> </span>tp<span class="w"> </span>world_bridge:island<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+
+<p><strong>关键点</strong>：
+- <strong>必须使用完整 ResourceLocation</strong>（<code>namespace:path</code>），不能用维度名称或 PairID
+- Tab 补全包含：原版维度 + 所有已创建 WorldBridge 维度
+- 自动寻找安全落点（避开基岩、岩浆、虚空）
+- 跨维度传送自动加载目标维度
+- 坐标可用 <code>~</code> 相对坐标</p>
+<hr />
+<h3 id="worldbridge-list"><code>/worldbridge list</code></h3>
+<p>列出所有已创建维度。</p>
+<div class="codehilite"><pre><span></span><code>Dimensions (3):
+  1. MyWorld (pair: a1b2c3d4) [default] LOADED 1 players
+  2. VoidIsles (pair: e5f6g7h8) [aetherial_fields] UNLOADED
+</code></pre></div>
+
+<p><strong>状态说明</strong>：
+- <code>LOADED</code> — 维度已加载在内存中
+- <code>UNLOADED</code> — 维度未加载（传送时自动加载）
+- <code>[PASSWORD]</code> — 有密码保护</p>
+<hr />
+<h3 id="worldbridge-edit"><code>/worldbridge edit &lt;pairId&gt;</code></h3>
+<p>打开 GUI 编辑维度配置（名称、难度、结构、海平面、密码等）。</p>
+<blockquote>
+<p><strong>不可修改</strong>：PairID、世界类型、种子、生物群系（创建后锁定）</p>
+</blockquote>
+<hr />
+<h3 id="worldbridge-rename"><code>/worldbridge rename &lt;pairId&gt; &lt;newName&gt;</code></h3>
+<p>重命名维度。</p>
+<div class="codehilite"><pre><span></span><code>/worldbridge<span class="w"> </span>rename<span class="w"> </span>a1b2c3d4<span class="w"> </span>NewWorldName
+</code></pre></div>
+
+<ul>
+<li>新名称不能与现有维度重复</li>
+<li>PairID 不变，传送命令、锚点绑定不受影响</li>
+</ul>
+<hr />
+<h3 id="worldbridge-delete"><code>/worldbridge delete &lt;pairId&gt;</code></h3>
+<p><strong>永久删除维度</strong>（需二次确认）。</p>
+<div class="codehilite"><pre><span></span><code>/worldbridge<span class="w"> </span>delete<span class="w"> </span>a1b2c3d4
+<span class="c1"># 提示: Are you sure? This cannot be undone. Type the pairId to confirm:</span>
+a1b2c3d4
+</code></pre></div>
+
+<p><strong>删除内容</strong>：
+- 维度数据文件（<code>worldbridge_dimensions.dat</code> 条目）
+- 维度世界文件夹（<code>saves/&lt;world&gt;/dimensions/&lt;pairId&gt;/</code>）
+- 所有锚点绑定、玩家传送记录</p>
+<blockquote>
+<p>⚠️ <strong>不可恢复</strong>，操作前请备份世界！</p>
+</blockquote>
+<hr />
+<h3 id="worldbridge-redlink"><code>/worldbridge redlink</code></h3>
+<p>红链系统指令，管理无线红石配对与以太触发器。</p>
+<p><strong>子命令：</strong></p>
+<table>
+<thead>
+<tr>
+<th>子命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pair list</code></td>
+<td>列出所有红链配对（pairId、类型、维度、坐标）</td>
+</tr>
+<tr>
+<td><code>pair disconnect &lt;pairId&gt;</code></td>
+<td>解除指定配对</td>
+</tr>
+<tr>
+<td><code>pair locate &lt;pairId&gt;</code></td>
+<td>定位配对位置（维度 + 坐标）</td>
+</tr>
+<tr>
+<td><code>trigger list</code></td>
+<td>列出所有以太触发器及其类型</td>
+</tr>
+<tr>
+<td><code>trigger info &lt;pos&gt;</code></td>
+<td>查看指定位置触发器的详细配置</td>
+</tr>
+<tr>
+<td><code>trigger clear &lt;pos&gt;</code></td>
+<td>清除指定位置的触发器</td>
+</tr>
+<tr>
+<td><code>trigger setregion &lt;pos&gt;</code></td>
+<td>设置触发器的检测区域（两次右键选择角点）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>详细原理和用法见 <a href="/WorldBridge/../Advanced/Redlink">红链无线红石系统</a></p>
+</blockquote>
+<hr />
+<h3 id="worldbridge-reload"><code>/worldbridge reload</code></h3>
+<p>热重载 <code>worldbridge-server.toml</code> 配置，无需重启服务器。</p>
+<div class="codehilite"><pre><span></span><code>/worldbridge<span class="w"> </span>reload
+<span class="c1"># Reloaded config: 13 entries updated.</span>
+</code></pre></div>
+
+<hr />
+<h3 id="worldbridge-resetpassword"><code>/worldbridge resetpassword &lt;pairId&gt;</code></h3>
+<p>重置维度密码（OP 专用，不需旧密码）。</p>
+<div class="codehilite"><pre><span></span><code>/worldbridge<span class="w"> </span>resetpassword<span class="w"> </span>a1b2c3d4
+<span class="c1"># Password for dimension &#39;MyWorld&#39; has been cleared.</span>
+</code></pre></div>
+
+<p>新密码可通过 <code>/worldbridge edit</code> 或下次传送时设置。</p>
+<hr />
+<h2 id="权限速查表">🔑 权限速查表</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>最低 OP 级别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>world create</code></td>
+<td>2</td>
+<td>创建指令维度</td>
+</tr>
+<tr>
+<td><code>world tp</code></td>
+<td>2</td>
+<td>传送（可传送他人，世界桥维度需坐标）</td>
+</tr>
+<tr>
+<td><code>world list</code></td>
+<td>2</td>
+<td>查看列表</td>
+</tr>
+<tr>
+<td><code>world edit</code></td>
+<td>2</td>
+<td>编辑配置</td>
+</tr>
+<tr>
+<td><code>world rename</code></td>
+<td>2</td>
+<td>重命名</td>
+</tr>
+<tr>
+<td><code>world delete</code></td>
+<td>3</td>
+<td>删除维度（高危）</td>
+</tr>
+<tr>
+<td><code>world resetpassword</code></td>
+<td>2</td>
+<td>重置密码</td>
+</tr>
+<tr>
+<td><code>reload</code></td>
+<td>2</td>
+<td>热重载配置</td>
+</tr>
+<tr>
+<td><code>redlink pair list</code></td>
+<td>2</td>
+<td>列出红链配对</td>
+</tr>
+<tr>
+<td><code>redlink pair disconnect</code></td>
+<td>2</td>
+<td>解除配对</td>
+</tr>
+<tr>
+<td><code>redlink pair locate</code></td>
+<td>2</td>
+<td>定位配对</td>
+</tr>
+<tr>
+<td><code>redlink trigger list</code></td>
+<td>2</td>
+<td>列出触发器</td>
+</tr>
+<tr>
+<td><code>redlink trigger info</code></td>
+<td>2</td>
+<td>查看触发器</td>
+</tr>
+<tr>
+<td><code>redlink trigger clear</code></td>
+<td>2</td>
+<td>清除触发器</td>
+</tr>
+<tr>
+<td><code>redlink trigger setregion</code></td>
+<td>2</td>
+<td>设置触发器区域</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>建议：普通管理员给 OP 2，仅服主/最高管理给 OP 3。</p>
+</blockquote>
+<hr />
+<h2 id="实用技巧">💡 实用技巧</h2>
+<ul>
+<li><strong>Tab 补全</strong>：维度名称、世界类型、生物群系均支持 Tab 补全</li>
+<li><strong>Tab 补全维度</strong>：输入 <code>/worldbridge world tp</code> 后按 Tab 显示所有维度（原版 + 自定义）</li>
+<li><strong>批量传送</strong>：<code>/worldbridge world tp @a world_bridge:a1b2c3d4</code>（需命令方块/函数）</li>
+<li><strong>坐标提示</strong>：传入/传出 <code>world_bridge:</code> 维度时，如果未提供 <code>x y z</code>，会自动弹出坐标输入界面</li>
+<li><strong>查看 PairID</strong>：<code>/worldbridge world list</code> 查看 PairID，再用 <code>world_bridge:&lt;pairId&gt;</code> 传送</li>
+</ul>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Getting-Started/First-Dimension">← 首次创建维度</a><a class="next" href="/WorldBridge/Dimensions/World-Types">世界类型 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Getting-Started/Commands">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#命令总览">📋 命令总览</a></li><li><a href="#详细用法">📖 详细用法</a></li><li><a href="#权限速查表">🔑 权限速查表</a></li><li><a href="#实用技巧">💡 实用技巧</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>跨维度漏斗 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link active" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">跨维度漏斗</h1>
+      <h1 id="跨维度漏斗">跨维度漏斗</h1>
+<blockquote>
+<p>版本：0.2.0<br />
+跨维度物品传输系统，支持 INPUT/OUTPUT/BOTH 三种模式，配对使用红链扳手。</p>
+</blockquote>
+<hr />
+<h2 id="概述">概述</h2>
+<p>跨维度漏斗允许物品在<strong>不同维度之间</strong>自动传输。它将物品从源维度的容器中拉取，跨维度传送到目标维度的容器中。支持三种工作模式，可灵活配置上下游。</p>
+<hr />
+<h2 id="合成">合成</h2>
+<p><strong>配方</strong>：<code>末影箱 ×4 + 漏斗 ×1 + 星锚奇点 ×3</code></p>
+<div class="codehilite"><pre><span></span><code>E E E
+E H E
+S S S
+</code></pre></div>
+
+<ul>
+<li>E = 末影箱</li>
+<li>H = 漏斗</li>
+<li>S = 星锚奇点</li>
+<li>产出：1 个跨维度漏斗</li>
+</ul>
+<hr />
+<h2 id="工作模式">工作模式</h2>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>方块颜色</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>INPUT</strong></td>
+<td>蓝色</td>
+<td>从周围容器拉取物品 → 内部缓冲 → 跨维传送</td>
+</tr>
+<tr>
+<td><strong>OUTPUT</strong></td>
+<td>橙色</td>
+<td>接收配对端传送的物品 → 缓冲 → 推送到周围容器</td>
+</tr>
+<tr>
+<td><strong>BOTH</strong></td>
+<td>紫色</td>
+<td>拉取 + 推送 + 跨维传送（双向）</td>
+</tr>
+</tbody>
+</table>
+<p>模式通过 GUI 切换，方块纹理随模式变化。</p>
+<hr />
+<h2 id="配对">配对</h2>
+<p>跨维度漏斗使用<strong>红链扳手</strong>进行配对，无需独立绑定工具。</p>
+<h3 id="配对步骤">配对步骤</h3>
+<ol>
+<li><strong>手持红链扳手</strong>右键点击源端漏斗 → 聊天提示"已选择源漏斗"</li>
+<li>前往目标维度，<strong>右键点击目标端漏斗</strong> → 自动配对：
+   - 生成唯一 pairId
+   - 双向写入坐标和维度
+   - 源端自动设为 INPUT，目标端自动设为 OUTPUT
+   - 播放配对音效</li>
+</ol>
+<h3 id="解绑">解绑</h3>
+<ul>
+<li><strong>再次用扳手点击已配对的对方</strong> → 解除配对</li>
+<li>或在 GUI 中点击<strong>解绑</strong>按钮</li>
+</ul>
+<hr />
+<h2 id="物品传输">物品传输</h2>
+<h3 id="input-模式">INPUT 模式</h3>
+<ol>
+<li>每 tick 扫描周围 3×3×3 范围的容器</li>
+<li>发现可提取物品 → 拉取到内部缓冲区</li>
+<li>每 10 tick 尝试向配对 OUTPUT 跨维传送（速率受配置限制）</li>
+<li>传送成功 → 两端产生 <code>END_ROD</code> 粒子</li>
+</ol>
+<h3 id="output-模式">OUTPUT 模式</h3>
+<ol>
+<li>接收配对 INPUT 传送来的物品 → 存入内部缓冲区</li>
+<li>每 tick 扫描周围容器 → 将缓冲物品推送出去</li>
+<li>支持过滤器白名单（仅推送指定物品）</li>
+</ol>
+<h3 id="红石触发">红石触发</h3>
+<ul>
+<li>红石信号<strong>高电平</strong>时 → 立即触发一次 <code>tryTransfer()</code></li>
+<li>可配合比较器控制传送速率</li>
+</ul>
+<h3 id="比较器输出">比较器输出</h3>
+<ul>
+<li><code>redstoneSignal = filledSlots × 15 ÷ 27</code></li>
+<li>缓冲区越满，信号越强</li>
+</ul>
+<hr />
+<h2 id="gui">GUI</h2>
+<p>右键跨维度漏斗打开控制界面：</p>
+<h3 id="界面布局">界面布局</h3>
+<div class="codehilite"><pre><span></span><code>┌─────────────────────────────────────┐
+│  Transdimensional Hopper Control    │
+│  [Mode: INPUT ▼]                    │
+├─────────────────────────────────────┤
+│  内部缓冲 (27 格)                    │
+│  [ ][ ][ ][ ][ ][ ][ ][ ][ ]        │
+│  [ ][ ][ ][ ][ ][ ][ ][ ][ ]        │
+│  [ ][ ][ ][ ][ ][ ][ ][ ][ ]        │
+├─────────────────────────────────────┤
+│  过滤器 (9 格，白名单)               │
+│  [ ][ ][ ][ ][ ][ ][ ][ ][ ]        │
+├─────────────────────────────────────┤
+│  频道码: [________] [设置] [解绑]    │
+│  状态: ✅ 已连接 / ❌ 未配对           │
+├─────────────────────────────────────┤
+│  统计: 传送 12,345 | 320 项/分       │
+│  最近日志:                           │
+│    §7[12:34] 钻石 ×12 → overworld   │
+│    §7[12:33] 铁锭 ×32 → overworld   │
+└─────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="交互">交互</h3>
+<ul>
+<li><strong>模式按钮</strong>：点击循环切换 INPUT → OUTPUT → BOTH → INPUT</li>
+<li><strong>频道码</strong>：编辑后点"设置"保存</li>
+<li><strong>缓冲槽</strong>：左键取/放，Shift 快速移动</li>
+<li><strong>过滤器</strong>：放入物品即加入白名单（空 = 所有物品允许）</li>
+<li><strong>统计面板</strong>：显示累计传送数、吞吐率、最近 5 条记录</li>
+<li><strong>玩家背包</strong>：可交互，支持 Q 键丢弃</li>
+</ul>
+<hr />
+<h2 id="指令">指令</h2>
+<h3 id="worldbridge-transhopper"><code>/worldbridge transhopper</code></h3>
+<table>
+<thead>
+<tr>
+<th>子命令</th>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>list</code></td>
+<td>—</td>
+<td>列出所有已加载的跨维度漏斗（按维度分组）</td>
+</tr>
+<tr>
+<td><code>give &lt;player&gt; [count]</code></td>
+<td>玩家名、数量</td>
+<td>给予指定玩家跨维度漏斗</td>
+</tr>
+<tr>
+<td><code>pair &lt;srcDim&gt; &lt;srcPos&gt; &lt;tgtDim&gt; &lt;tgtPos&gt;</code></td>
+<td>4 组坐标</td>
+<td>强制配对两个漏斗</td>
+</tr>
+<tr>
+<td><code>unbind &lt;dim&gt; &lt;pos&gt;</code></td>
+<td>维度、坐标</td>
+<td>解绑指定位置的漏斗</td>
+</tr>
+<tr>
+<td><code>reload</code></td>
+<td>—</td>
+<td>热重载配置文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标格式">坐标格式</h3>
+<div class="codehilite"><pre><span></span><code>&lt;pos&gt; := &lt;dimensionId&gt; &lt;x&gt; &lt;y&gt; &lt;z&gt;
+例: world_bridge:cmd_abc 100 64 -200
+</code></pre></div>
+
+<hr />
+<h2 id="服务端配置">服务端配置</h2>
+<p>在 <code>worldbridge-server.toml</code> 的 <code>[transhopper]</code> 段：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">[transhopper]</span>
+<span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="w">        </span><span class="c1"># 总开关</span>
+<span class="n">max_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">64</span><span class="w">         </span><span class="c1"># 最大传输速率（项/秒/方块），0=无限</span>
+<span class="n">scan_range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w">        </span><span class="c1"># 主动扫描半径（方块）</span>
+</code></pre></div>
+
+<hr />
+<h2 id="技术细节">技术细节</h2>
+<h3 id="区块保活">区块保活</h3>
+<p>跨维度漏斗通过 PORTAL 类型的 <code>RegionTicket</code> 保持自身和目标维度的区块加载：</p>
+<ul>
+<li><strong>自身</strong>：每 10 tick 刷新 ticket（TTL 300 ticks）</li>
+<li><strong>目标</strong>：已配对时自动为目标端也添加 ticket</li>
+<li><strong>推送预加载</strong>：OUTPUT 推送扫描前，预加载 3×3 chunk 范围的所有未加载区块</li>
+</ul>
+<h3 id="维度自动加载">维度自动加载</h3>
+<p>当目标维度未加载时，系统自动通过 <code>DimensionDataManager</code> 读取数据并重建维度。即使存档中的 pairId 与维度键不匹配，也会尝试回退到维度路径名查找。</p>
+<h3 id="forge-兼容">Forge 兼容</h3>
+<p>由于 Forge 的 <code>BlockEntityTicker</code> 不 tick 未激活维度的 BE，系统通过 <code>EventHandler.onServerTick()</code> 手动遍历所有活跃的跨维度漏斗并调用其 <code>tick()</code>。</p>
+<hr />
+<h2 id="常见问题">常见问题</h2>
+<p><strong>Q: 物品传输很慢？</strong><br />
+A: 检查 <code>max_rate</code> 配置项（默认 64 项/秒）。如果目标端缓冲区满，传输会暂停直到有空间。</p>
+<p><strong>Q: OUTPUT 端不推送物品到箱子？</strong><br />
+A: 可能原因：箱子在未加载的区块中。系统有自动预加载机制，但如果箱子距离过远（&gt; scan_range），请调整 <code>scan_range</code>。</p>
+<p><strong>Q: 找不到配对端？</strong><br />
+A: 使用命令 <code>/worldbridge transhopper list</code> 查看所有已加载漏斗。确认两端维度都已加载且配对信息正确。</p>
+<hr />
+<h2 id="双分支差异">双分支差异</h2>
+<table>
+<thead>
+<tr>
+<th>点</th>
+<th>1.19.4</th>
+<th>1.20.1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GUI 渲染</td>
+<td><code>PoseStack</code></td>
+<td><code>GuiGraphics</code></td>
+</tr>
+<tr>
+<td>核心逻辑</td>
+<td>完全一致</td>
+<td>完全一致</td>
+</tr>
+<tr>
+<td>网络包</td>
+<td>一致</td>
+<td>一致</td>
+</tr>
+<tr>
+<td><code>onServerTick</code></td>
+<td>有</td>
+<td>有</td>
+</tr>
+</tbody>
+</table>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Items/Star-Anchor">← 星锚奇点</a><a class="next" href="/WorldBridge/Advancements/List">成就列表 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Items/Transdimensional-Hopper">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#概述">概述</a></li><li><a href="#合成">合成</a></li><li><a href="#工作模式">工作模式</a></li><li><a href="#配对">配对</a></li><li><a href="#物品传输">物品传输</a></li><li><a href="#gui">GUI</a></li><li><a href="#指令">指令</a></li><li><a href="#服务端配置">服务端配置</a></li><li><a href="#技术细节">技术细节</a></li><li><a href="#常见问题">常见问题</a></li><li><a href="#双分支差异">双分支差异</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>

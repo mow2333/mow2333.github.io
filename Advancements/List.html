@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="WorldBridge Static Docs Builder">
+<title>成就列表 - WorldBridge</title>
+<link rel="icon" type="image/svg+xml" href="/WorldBridge/assets/favicon.svg">
+<link rel="stylesheet" href="/WorldBridge/assets/css/styles.css">
+<link rel="stylesheet" href="/WorldBridge/assets/css/pygments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="icon-btn menu-btn" id="menu-btn" aria-label="打开导航" title="打开导航">
+      <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </button>
+    <a class="brand" href="/WorldBridge/">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span class="brand-name">WorldBridge</span>
+    </a>
+    <div class="search-wrap">
+      <input type="search" id="search-input" placeholder="搜索文档…" autocomplete="off" aria-label="搜索">
+      <div class="search-dropdown" id="search-dropdown" hidden></div>
+    </div>
+    <div class="header-actions">
+      <a class="icon-btn" href="https://mow2333.github.io/" target="_blank" rel="noopener" aria-label="个人主页" title="个人主页">
+        <svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.2"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener" aria-label="Discord" title="Discord">
+        <svg viewBox="0 0 24 24"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.89-1.52.07.07 0 0 0-.08.04c-.21.38-.44.87-.6 1.25a18.3 18.3 0 0 0-5.5 0 12.6 12.6 0 0 0-.61-1.25.08.08 0 0 0-.08-.04c-1.7.3-3.34.8-4.88 1.52a.07.07 0 0 0-.04.03C.53 9.05-.32 13.58.1 18.06c0 .02.01.04.03.05a19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.22-2 .02-.04 0-.08-.04-.1a13 13 0 0 1-1.87-.9.08.08 0 0 1 0-.12c.13-.1.25-.19.37-.29a.07.07 0 0 1 .08-.01 14.2 14.2 0 0 0 12.06 0 .07.07 0 0 1 .08.01c.12.1.25.2.37.3a.08.08 0 0 1 0 .12c-.6.35-1.22.64-1.88.89a.08.08 0 0 0-.04.1c.36.7.78 1.37 1.22 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.02-3.03.08.08 0 0 0 .03-.05c.5-5.18-.84-9.68-3.55-13.66a.06.06 0 0 0-.03-.03zM8.02 15.33c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.09 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42c1.22 0 2.18 1.09 2.16 2.42 0 1.34-.94 2.42-2.16 2.42z"/></svg>
+      </a>
+      <button class="icon-btn theme-btn" id="theme-btn" aria-label="切换主题" title="切换主题">
+        <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm9 9h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM5 12a1 1 0 0 0-1-1H2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm12.3 5.66a1 1 0 0 0-1.41 1.41l1.41 1.41a1 1 0 1 0 1.42-1.41l-1.42-1.41zM6.7 6.7a1 1 0 0 0-1.41-1.41L3.88 6.7a1 1 0 0 0 1.41 1.41L6.7 6.7zm12.42 0-1.41-1.41a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.42zM6.7 17.3a1 1 0 0 0-1.42 1.41l1.41 1.42a1 1 0 1 0 1.42-1.42L6.7 17.3zM12 20a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+<p class="nav-group">快速开始</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Installation">安装与配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/First-Dimension">首次创建维度</a></li>
+<li><a class="nav-link" href="/WorldBridge/Getting-Started/Commands">命令大全</a></li>
+</ul>
+<p class="nav-group">维度系统</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Dimensions/World-Types">世界类型</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Parameters">维度参数</a></li>
+<li><a class="nav-link" href="/WorldBridge/Dimensions/Password">密码保护</a></li>
+</ul>
+<p class="nav-group">物品与方块</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Items/World-Anchor">世界之锚</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Star-Anchor">星锚奇点</a></li>
+<li><a class="nav-link" href="/WorldBridge/Items/Transdimensional-Hopper">跨维漏斗</a></li>
+</ul>
+<p class="nav-group">成就系统</p>
+<ul class="nav-list">
+<li><a class="nav-link active" href="/WorldBridge/Advancements/List">成就列表</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advancements/Triggers">触发器</a></li>
+</ul>
+<p class="nav-group">服务端配置</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Config/Server-Config">服务端配置</a></li>
+<li><a class="nav-link" href="/WorldBridge/Config/Permissions">权限</a></li>
+</ul>
+<p class="nav-group">进阶主题</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Advanced/Star-Anchor-Light">星锚动态光源</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Redlink">红链系统</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Datapack">数据包</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Anchor-Gui">锚点 GUI</a></li>
+<li><a class="nav-link" href="/WorldBridge/Advanced/Faq">常见问题</a></li>
+</ul>
+<p class="nav-group">更新日志</p>
+<ul class="nav-list">
+<li><a class="nav-link" href="/WorldBridge/Changelog">更新日志</a></li>
+</ul>
+</nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebar-overlay" hidden></div>
+
+  <main class="content">
+    <article class="article">
+      <h1 class="page-heading">成就列表</h1>
+      <h1 id="成就列表">成就列表</h1>
+<p>WorldBridge 共 <strong>11 个原版进度</strong>，使用自定义 Criterion Trigger，全部配有诗化标题与描述。</p>
+<hr />
+<h2 id="进度总览">📋 进度总览</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>标题 (中文)</th>
+<th>标题 (英文)</th>
+<th>触发条件</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>root</code></td>
+<td><strong>WorldBridge</strong></td>
+<td>WorldBridge</td>
+<td>—</td>
+<td>task</td>
+</tr>
+<tr>
+<td><code>genesis</code></td>
+<td><strong>开天辟地</strong> / The First Dawn</td>
+<td>首次创建一个新维度</td>
+<td><code>dimension_created</code></td>
+<td>challenge</td>
+</tr>
+<tr>
+<td><code>enter_chaos_abyssos</code></td>
+<td><strong>???</strong></td>
+<td>首次进入未知领域</td>
+<td><code>enter_chaos_abyssos</code></td>
+<td>task</td>
+</tr>
+<tr>
+<td><code>enter_aetherial_fields</code></td>
+<td><strong>进入星界之野</strong> / Aetherwalker</td>
+<td>首次进入星界之野</td>
+<td><code>enter_aetherial_fields</code></td>
+<td>task</td>
+</tr>
+<tr>
+<td><code>enter_deep_abyss</code></td>
+<td><strong>进入幽邃深渊</strong> / Abyssal Descent</td>
+<td>首次进入幽邃深渊</td>
+<td><code>enter_deep_abyss</code></td>
+<td>task</td>
+</tr>
+<tr>
+<td><code>explorer</code></td>
+<td><strong>探索者</strong> / Trailblazer</td>
+<td>三个特殊维度全部踏足</td>
+<td><code>enter_chaos_abyssos</code> + <code>enter_aetherial_fields</code> + <code>enter_deep_abyss</code></td>
+<td>challenge</td>
+</tr>
+<tr>
+<td><code>sky_city</code></td>
+<td><strong>天空之城</strong> / Celestial Citadel</td>
+<td>在虚空中发现漂浮的远古遗迹</td>
+<td><code>structure_any</code> (sky)</td>
+<td>goal</td>
+</tr>
+<tr>
+<td><code>all_structures</code></td>
+<td><strong>别有洞天</strong> / Hidden Realm</td>
+<td>找齐全部 4 种天空结构</td>
+<td><code>structure_ship</code> + <code>structure_fortress</code> + <code>structure_bastion</code> + <code>structure_ancient</code></td>
+<td>challenge</td>
+</tr>
+<tr>
+<td><code>deep_down</code></td>
+<td><strong>深不可测</strong> / The Unfathomed</td>
+<td>幽邃深渊 Y≤-32</td>
+<td><code>deep_reached</code> (Y≤-32)</td>
+<td>task</td>
+</tr>
+<tr>
+<td><code>high_fly</code></td>
+<td><strong>星辰大海</strong> / Sea of Stars</td>
+<td>星界之野 Y≥200</td>
+<td><code>high_reached</code> (Y≥200)</td>
+<td>goal</td>
+</tr>
+<tr>
+<td><code>deepest</code></td>
+<td><strong>无底深渊</strong> / Bottomless Abyss</td>
+<td>幽邃深渊 Y=-64 触碰虚空底</td>
+<td><code>deepest_reached</code> (Y=-64)</td>
+<td>challenge</td>
+</tr>
+<tr>
+<td><code>dimension_death</code></td>
+<td><strong>一场空</strong> / All for Naught</td>
+<td>在任意模组维度中死亡</td>
+<td><code>dimension_death</code></td>
+<td>task</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="标题与描述-双语">🎨 标题与描述 (双语)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>中文标题</th>
+<th>English Title</th>
+<th>中文描述</th>
+<th>English Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>root</code></td>
+<td>WorldBridge</td>
+<td>WorldBridge</td>
+<td>超越熟知的世界</td>
+<td>Beyond the familiar worlds</td>
+</tr>
+<tr>
+<td><code>genesis</code></td>
+<td>开天辟地</td>
+<td>The First Dawn</td>
+<td>首次创建一个新维度</td>
+<td>Create your first dimension</td>
+</tr>
+<tr>
+<td><code>enter_chaos_abyssos</code></td>
+<td>???</td>
+<td>???</td>
+<td>裂隙在脚下蔓延，虚空在耳畔低语</td>
+<td>Cracks spread beneath your feet, the void whispers in your ears</td>
+</tr>
+<tr>
+<td><code>enter_aetherial_fields</code></td>
+<td>进入星界之野</td>
+<td>Aetherwalker</td>
+<td>第一次踏入云层之上的世界</td>
+<td>First step into the Stellar Wilds</td>
+</tr>
+<tr>
+<td><code>enter_deep_abyss</code></td>
+<td>进入幽邃深渊</td>
+<td>Abyssal Descent</td>
+<td>第一次踏入地底深处的黑暗</td>
+<td>First descent into the Deep Dark</td>
+</tr>
+<tr>
+<td><code>explorer</code></td>
+<td>探索者</td>
+<td>Trailblazer</td>
+<td>三个世界全部踏足</td>
+<td>Visit all 3 special dimensions</td>
+</tr>
+<tr>
+<td><code>sky_city</code></td>
+<td>天空之城</td>
+<td>Celestial Citadel</td>
+<td>在虚空中发现漂浮的远古遗迹</td>
+<td>Find a floating sky ruin in the void</td>
+</tr>
+<tr>
+<td><code>all_structures</code></td>
+<td>别有洞天</td>
+<td>Hidden Realm</td>
+<td>找齐全部 4 种天空结构</td>
+<td>Discover all 4 types of sky structures</td>
+</tr>
+<tr>
+<td><code>deep_down</code></td>
+<td>深不可测</td>
+<td>The Unfathomed</td>
+<td>在幽邃深渊抵达世界之底 Y=-32</td>
+<td>Reach the bottom of the Deep Abyss at Y=-32</td>
+</tr>
+<tr>
+<td><code>high_fly</code></td>
+<td>星辰大海</td>
+<td>Sea of Stars</td>
+<td>在星界之野抵达 Y=200</td>
+<td>Reach Y=200 in Aetherial Fields</td>
+</tr>
+<tr>
+<td><code>deepest</code></td>
+<td>无底深渊</td>
+<td>Bottomless Abyss</td>
+<td>在最深处触碰虚空之底</td>
+<td>Touch the void floor at the deepest point</td>
+</tr>
+<tr>
+<td><code>dimension_death</code></td>
+<td>一场空</td>
+<td>All for Naught</td>
+<td>在异世界中陨落</td>
+<td>Perish in a foreign dimension</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="进度树结构">🖼️ 进度树结构</h2>
+<div class="codehilite"><pre><span></span><code>root (WorldBridge) ──┬── genesis (开天辟地) ──┬── enter_chaos_abyssos (???)
+                     │                      ├── enter_aetherial_fields (进入星界之野)
+                     │                      └── enter_deep_abyss (进入幽邃深渊)
+                     │
+                     ├── sky_city (天空之城) ── all_structures (别有洞天)
+                     │
+                     ├── deep_down (深不可测) ── deepest (无底深渊)
+                     │
+                     ├── high_fly (星辰大海)
+                     │
+                     ├── explorer (探索者)  ← 需要以上三个进维度
+                     │
+                     └── dimension_death (一场空)
+</code></pre></div>
+
+<hr />
+<h2 id="框架类型说明">🏷️ 框架类型说明</h2>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>图标</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>task</code></td>
+<td>普通</td>
+<td>普通任务</td>
+</tr>
+<tr>
+<td><code>goal</code></td>
+<td>挑战</td>
+<td>重要里程碑</td>
+</tr>
+<tr>
+<td><code>challenge</code></td>
+<td>困难</td>
+<td>高难度挑战</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="相关页面">🔗 相关页面</h2>
+<ul>
+<li><a href="/WorldBridge/Triggers">触发器详解</a> — 13 个自定义 Trigger 详解</li>
+<li><a href="/WorldBridge/../Getting-Started/Achievements">成就系统</a> — 成就系统概览</li>
+</ul>
+    </article>
+    <div class="prev-next"><a class="prev" href="/WorldBridge/Items/Transdimensional-Hopper">← 跨维漏斗</a><a class="next" href="/WorldBridge/Advancements/Triggers">触发器 →</a></div>
+    <footer class="site-footer">
+      <p>© 2026 WorldBridge · All Rights Reserved · 开源协议详见 <a href="https://github.com/mow2333/WorldBridge" target="_blank" rel="noopener">GitHub 仓库</a></p>
+      <p><a href="/WorldBridge/Advancements/List">本站页面</a> · <a href="/WorldBridge/Changelog">更新日志</a> · <a href="https://discord.gg/zxG3zmsR9P" target="_blank" rel="noopener">加入讨论</a></p>
+    </footer>
+  </main>
+
+  <aside class="toc-sidebar">
+    <nav class="page-toc"><p class="toc-title">本页目录</p><ul><li><a href="#进度总览">📋 进度总览</a></li><li><a href="#标题与描述-双语">🎨 标题与描述 (双语)</a></li><li><a href="#进度树结构">🖼️ 进度树结构</a></li><li><a href="#框架类型说明">🏷️ 框架类型说明</a></li><li><a href="#相关页面">🔗 相关页面</a></li></ul></nav>
+  </aside>
+</div>
+
+<script>
+const SEARCH_INDEX = null;
+const SEARCH_DATA_URL = "/WorldBridge/search_index.json";
+</script>
+<script src="/WorldBridge/assets/js/main.js"></script>
+</body>
+</html>
