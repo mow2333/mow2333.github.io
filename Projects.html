@@ -149,6 +149,28 @@
   .links-row .path { margin-left: auto; font-size: 11px; color: var(--dim2); }
   .links-row a:hover .path { color: var(--dim); }
 
+  /* 附属区（可折叠） */
+  .aff-head {
+    cursor: pointer; user-select: none; -webkit-user-select: none;
+    margin-top: 1.6em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .aff-head::after { content: "▸"; font-size: 24px; line-height: 1; }
+  .aff-head.open::after { content: "▾"; }
+  .aff-body {
+    display: grid;
+    grid-template-rows: 0fr;
+  }
+  .aff-body > * { overflow: hidden; min-height: 0; }
+  .aff-head.open + .aff-body { grid-template-rows: 1fr; }
+  .aff-item {
+    margin-left: 4ch;
+    padding-top: 2px;
+    font-size: 13px;
+    color: var(--dim2);
+    letter-spacing: 1px;
+  }
+
   .placeholder { color: var(--dim2); font-size: 13px; letter-spacing: 2px; }
   .placeholder .cursor { color: var(--ink); animation: blink 1s step-end infinite; }
   @keyframes blink { 50% { opacity: 0; } }
@@ -258,9 +280,26 @@
          <h2>links</h2>
          <div class="links-row">
            ${p.links.map(l => `<a href="${l.href}" target="_blank" rel="noopener">${l.label}<span class="path">${l.path}</span></a>`).join("")}
+         </div>
+         <h2 class="aff-head" id="affHead">AFFILIATION</h2>
+         <div class="aff-body">
+           <p class="aff-item"><span id="affText"></span><span class="cursor">▌</span></p>
          </div>`;
     }
+    const affHead = document.getElementById("affHead");
+    if (affHead) affHead.addEventListener("click", () => affHead.classList.toggle("open"));
+    typeAffiliation();
     renderList();
+  }
+
+  function typeAffiliation() {
+    const text = "更多附属mod正在寻找中……";
+    const el = document.getElementById("affText");
+    if (!el) return;
+    let i = 0;
+    (function type() {
+      if (i <= text.length) { el.textContent = text.slice(0, i++); setTimeout(type, 120); }
+    })();
   }
 
   function typePlaceholder() {
